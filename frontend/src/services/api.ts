@@ -31,7 +31,7 @@ const ROOT = "https://localhost:8080/";
         
         @return {object} The response Data
     */
-    const get = (endpoint: String, options: String[]) => {
+    export const get = (endpoint: String, options: String[]) => {
         let url = ROOT + endpoint;
         options.forEach(element => {
             url = url + "/" + element;
@@ -50,7 +50,7 @@ const ROOT = "https://localhost:8080/";
 
         @return {object} The response Data
     */
-    const post = (endpoint: String, options: String[], optionsBody: any) => {
+    export const post = (endpoint: String, options: String[], optionsBody: any) => {
         let url = ROOT + endpoint;
         options.forEach(element => {
             url = url + "/" + element;

@@ -17,7 +17,6 @@ export class LoginComponent {
   //If that person exists, then we navigate to select company 
 
   async login() {
-    //If we get a valid response, route to select company page
     let response = post("users", ["login"], {username: this.password})
     
   }
