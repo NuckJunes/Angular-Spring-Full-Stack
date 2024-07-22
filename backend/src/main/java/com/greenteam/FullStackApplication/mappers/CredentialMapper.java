@@ -8,5 +8,5 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface CredentialMapper {
     CredentialMapper INSTANCE= Mappers.getMapper(CredentialMapper.class);
-    Credential dtoToEntity(CredentialDto credentialDTO);
+    Credential dtoToEntity(CredentialDto credentialDto);
 }

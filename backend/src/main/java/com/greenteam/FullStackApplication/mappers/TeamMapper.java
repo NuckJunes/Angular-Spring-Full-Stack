@@ -10,11 +10,11 @@ import java.util.Set;
 @Mapper(componentModel = "spring", uses = {BasicUserMapper.class})
 public interface TeamMapper {
     TeamMapper INSTANCE= Mappers.getMapper(TeamMapper.class);
-    TeamDto entityToDTO(Team team);
+    TeamDto entityToDto(Team team);
 
-    Set<TeamDto> entitiesToDTOs(Set<Team> teams);
+    Set<TeamDto> entitiesToDtos(Set<Team> teams);
 
-    Set<Team> dtosToEntities(Set<TeamDto> teamDTOS);
+    Set<Team> dtosToEntities(Set<TeamDto> teamDtos);
 
-    Team dtoToEntity(TeamDto teamDTO);
+    Team dtoToEntity(TeamDto teamDto);
 }

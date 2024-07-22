@@ -10,10 +10,10 @@ import java.util.Set;
 @Mapper(componentModel = "spring", uses = { BasicUserMapper.class })
 public interface AnnouncementMapper {
     AnnouncementMapper INSTANCE= Mappers.getMapper(AnnouncementMapper.class);
-    AnnouncementDto entityToDTO(Announcements announcement);
+    AnnouncementDto entityToDto(Announcements announcement);
 
-    Set<AnnouncementDto> entitiesToDTOs(Set<Announcements> announcements);
+    Set<AnnouncementDto> entitiesToDtos(Set<Announcements> announcements);
 
-    Announcements dtoToEntity(AnnouncementDto announcementDTO);
+    Announcements dtoToEntity(AnnouncementDto announcementDto);
 }
 

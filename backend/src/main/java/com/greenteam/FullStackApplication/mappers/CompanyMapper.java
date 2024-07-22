@@ -10,7 +10,7 @@ import java.util.Set;
 @Mapper(componentModel = "spring", uses = {TeamMapper.class,BasicUserMapper.class})
 public interface CompanyMapper {
     CompanyMapper INSTANCE= Mappers.getMapper(CompanyMapper.class);
-    CompanyDto entityToDTO(Company company);
+    CompanyDto entityToDto(Company company);
 
-    Set<CompanyDto> entitiesToDTOs(Set<Company> companies);
+    Set<CompanyDto> entitiesToDtos(Set<Company> companies);
 }

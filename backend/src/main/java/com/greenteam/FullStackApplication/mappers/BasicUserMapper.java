@@ -11,11 +11,11 @@ import java.util.Set;
 @Mapper(componentModel = "spring", uses = {ProfileMapper.class, CredentialMapper.class})
 public interface BasicUserMapper {
     BasicUserMapper INSTANCE= Mappers.getMapper(BasicUserMapper.class);
-    BasicUserDto entityToBasicUserDTO(User user);
+    BasicUserDto entityToBasicUserDto(User user);
 
-    Set<BasicUserDto> entitiesToBasicUserDTOs(Set<User> users);
+    Set<BasicUserDto> entitiesToBasicUserDtos(Set<User> users);
 
 
 
-    User requestDTOToEntity(UserRequestDto userRequestDTO);
+    User requestDtoToEntity(UserRequestDto userRequestDto);
 }
