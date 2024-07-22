@@ -1,14 +1,14 @@
 package com.greenteam.FullStackApplication.controllers;
 
-import com.greenteam.FullStackApplication.services.ProjectService;
+import com.greenteam.FullStackApplication.services.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/company")
 @RequiredArgsConstructor
-public class ProjectController {
-    private final ProjectService projectService;
+public class CompanyController {
+    private final CompanyService companyService;
 }
