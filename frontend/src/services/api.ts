@@ -57,7 +57,10 @@ const ROOT = "https://localhost:8080/";
         })
         return fetch(url, {
             method: "POST",
-            body: JSON.stringify(optionsBody)
+            body: JSON.stringify(optionsBody),
+            headers: {
+                "Content-Type": "application/json"
+            }
         }).then(checkStatus).then(parseJSON);
     }
 
