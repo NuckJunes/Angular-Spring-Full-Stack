@@ -1,7 +1,9 @@
 package com.greenteam.FullStackApplication.controllers;
 
 import com.greenteam.FullStackApplication.dtos.CompanyDto;
+
 import com.greenteam.FullStackApplication.dtos.TeamDto;
+import com.greenteam.FullStackApplication.dtos.AnnouncementDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
 import com.greenteam.FullStackApplication.services.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,11 @@ public class CompanyController {
     @GetMapping("/{id}/teams")
     public Set<TeamDto> getAllTeams(@PathVariable Long id){
         return companyService.getAllTeams(id);
+    }
+    
+    @GetMapping("/{id}/announcements")
+    public Set<AnnouncementDto> getAnnouncements(@PathVariable Long id){
+        return companyService.getAnnouncements(id);
     }
     
 }

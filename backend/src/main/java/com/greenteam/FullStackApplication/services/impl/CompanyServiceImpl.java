@@ -1,10 +1,13 @@
 package com.greenteam.FullStackApplication.services.impl;
 
+import com.greenteam.FullStackApplication.dtos.AnnouncementDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
 import com.greenteam.FullStackApplication.dtos.TeamDto;
+import com.greenteam.FullStackApplication.entities.Announcements;
 import com.greenteam.FullStackApplication.entities.Company;
 import com.greenteam.FullStackApplication.entities.User;
 import com.greenteam.FullStackApplication.entities.Team;
+import com.greenteam.FullStackApplication.mappers.AnnouncementMapper;
 import com.greenteam.FullStackApplication.mappers.FullUserMapper;
 import com.greenteam.FullStackApplication.mappers.TeamMapper;
 import com.greenteam.FullStackApplication.services.CompanyService;
@@ -21,6 +24,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final FullUserMapper fullUserMapper;
     private final TeamMapper teamMapper;
+    private final AnnouncementMapper announceMapper;
     private final ValidateService validateService;
     
     
@@ -40,4 +44,12 @@ public class CompanyServiceImpl implements CompanyService {
         company.getTeams().forEach(allTeams::add);
         return teamMapper.entitiesToDtos(allTeams);
     }
+    
+    public Set<AnnouncementDto> getAllAnnounces(Long id) {
+        Company company=validateService.findCompany(id);
+        Set<Announcements> allAnnounces =new HashSet<>();
+        company.getAnnouncements().forEach(allAnnounces::add);
+        return announceMapper.entitiesToDtos(allAnnounces);
+    }
 }
+
