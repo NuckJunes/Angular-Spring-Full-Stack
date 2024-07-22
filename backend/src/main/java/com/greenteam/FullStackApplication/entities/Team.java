@@ -11,7 +11,8 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Data
-public class Company {
+public class Team {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -20,15 +21,14 @@ public class Company {
 
     private String description;
 
-    @OneToMany(mappedBy = "company")
-    @EqualsAndHashCode.Exclude
-    private Set<Announcements> announcements=new HashSet<>();
+    @ManyToOne
+    private Company company;
 
-    @ManyToMany(mappedBy = "companies")
+    @ManyToMany
     @EqualsAndHashCode.Exclude
-    private Set<User> employees=new HashSet<>();
+    private Set<User> teammates=new HashSet<>();
 
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "team")
     @EqualsAndHashCode.Exclude
-    private Set<Team> teams=new HashSet<>();
+    private Set<Project> projects=new HashSet<>();
 }

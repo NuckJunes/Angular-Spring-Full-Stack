@@ -30,5 +30,22 @@ public class User {
 
     private String status="PENDING";
 
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    private Set<Announcements> announcements=new HashSet<Announcements>() ;
+
+
+
+
+    @ManyToMany
+    @JoinTable(name = "company_employees", joinColumns = @JoinColumn(name = "employee_id",referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id",referencedColumnName = "id"))
+    @EqualsAndHashCode.Exclude
+    private Set<Company> companies=new HashSet<>();
+
+    @ManyToMany(mappedBy = "teammates" )
+    @EqualsAndHashCode.Exclude
+    private Set<Team> teams=new HashSet<>();
+
 
 }
