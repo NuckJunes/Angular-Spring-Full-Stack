@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper(componentModel = "spring")
 public interface ProfileMapper {
     ProfileMapper INSTANCE= Mappers.getMapper(ProfileMapper.class);
-    Profile dtoToEntity(ProfileDto profileDTO);
+    Profile dtoToEntity(ProfileDto profileDto);
 
-    ProfileDto entityToDTO(Profile profile);
+    ProfileDto entityToDto(Profile profile);
 }
