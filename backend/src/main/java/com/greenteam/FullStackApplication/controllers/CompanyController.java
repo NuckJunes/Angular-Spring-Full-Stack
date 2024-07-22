@@ -5,7 +5,9 @@ import com.greenteam.FullStackApplication.dtos.CompanyDto;
 import com.greenteam.FullStackApplication.dtos.TeamDto;
 import com.greenteam.FullStackApplication.dtos.AnnouncementDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
+import com.greenteam.FullStackApplication.dtos.ProjectDto;
 import com.greenteam.FullStackApplication.services.CompanyService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +33,11 @@ public class CompanyController {
     public Set<AnnouncementDto> getAnnouncements(@PathVariable Long id){
         return companyService.getAnnouncements(id);
     }
+    
+    public Set<ProjectDto> getProjects(@PathVariable Long id){
+    	return companyService.getAllProjects(id);
+    }
+    
+
     
 }

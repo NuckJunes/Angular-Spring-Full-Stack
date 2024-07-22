@@ -3,6 +3,7 @@ package com.greenteam.FullStackApplication.services;
 import com.greenteam.FullStackApplication.dtos.TeamDto;
 import com.greenteam.FullStackApplication.dtos.AnnouncementDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
+import com.greenteam.FullStackApplication.dtos.ProjectDto;
 
 import java.util.Set;
 
@@ -13,5 +14,6 @@ public interface CompanyService {
     Set<FullUserDto> getAllUsers(Long id);
     Set<TeamDto> getAllTeams(Long id);
     Set<AnnouncementDto> getAnnouncements(Long id);
+    Set<ProjectDto> getAllProjects(Long id);
 
 }

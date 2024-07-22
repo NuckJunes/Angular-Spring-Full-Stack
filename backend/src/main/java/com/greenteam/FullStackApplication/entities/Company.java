@@ -28,6 +28,7 @@ public class Company {
     @EqualsAndHashCode.Exclude
     private Set<User> employees=new HashSet<>();
 
+    
     @OneToMany(mappedBy = "company")
     @EqualsAndHashCode.Exclude
     private Set<Team> teams=new HashSet<>();
