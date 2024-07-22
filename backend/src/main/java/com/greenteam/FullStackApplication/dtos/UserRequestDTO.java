@@ -6,5 +6,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserRequestDTO {
-    private String username, password;
+    //private CredentialDto credentialDto;
+    //private ProfileDto profileDto;
 }
