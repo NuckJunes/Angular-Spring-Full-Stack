@@ -1,9 +1,12 @@
 package com.greenteam.FullStackApplication.services.impl;
 
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
+import com.greenteam.FullStackApplication.dtos.TeamDto;
 import com.greenteam.FullStackApplication.entities.Company;
 import com.greenteam.FullStackApplication.entities.User;
+import com.greenteam.FullStackApplication.entities.Team;
 import com.greenteam.FullStackApplication.mappers.FullUserMapper;
+import com.greenteam.FullStackApplication.mappers.TeamMapper;
 import com.greenteam.FullStackApplication.services.CompanyService;
 import com.greenteam.FullStackApplication.services.ValidateService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +20,10 @@ import java.util.Set;
 public class CompanyServiceImpl implements CompanyService {
 
     private final FullUserMapper fullUserMapper;
-
+    private final TeamMapper teamMapper;
     private final ValidateService validateService;
+    
+    
     @Override
     public Set<FullUserDto> getAllUsers(Long id) {
         Company company=validateService.findCompany(id);
@@ -26,5 +31,13 @@ public class CompanyServiceImpl implements CompanyService {
         company.getEmployees().forEach(filteredUsers::add);
         filteredUsers.removeIf(user -> !user.isActive());
         return fullUserMapper.entitiesToFullUserDtos(filteredUsers);
+    }
+    
+    @Override
+    public Set<TeamDto> getAllTeams(Long id) {
+        Company company=validateService.findCompany(id);
+        Set<Team> allTeams =new HashSet<>();
+        company.getTeams().forEach(allTeams::add);
+        return teamMapper.entitiesToDtos(allTeams);
     }
 }
