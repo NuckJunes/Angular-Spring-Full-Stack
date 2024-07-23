@@ -16,6 +16,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/company")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CompanyController {
     private final CompanyService companyService;
     private final UserService userService;
