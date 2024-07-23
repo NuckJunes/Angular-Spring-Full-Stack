@@ -1,23 +1,29 @@
 <div class="page-container">
     <div class="announcements-header">
         <h1 class="page-title">Announcements</h1>
-        <button class="new-post-button">New</button>
+        <button *ngIf="userDummyDTO.admin" (click)="newAnnouncementPopup()" class="new-post-button">New</button>
     </div>
     <div class="break"></div>
     <div class="announcements-container">
-        <div class="announcement-container">
+        <div *ngFor="let announcment of dummyDTO" class="announcement-container">
             <div class="announcement-header">
-                <p class="author">Chris, CEO</p>
-                <p class="date">November 17, 2022</p>
+                <p class="author">{{announcment.author}}, {{announcment.title}}</p>
+                <p class="date">{{announcment.date}}</p>
             </div>
-            <p class="announcement-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo repudiandae natus nihil, aspernatur omnis iste voluptate reiciendis nobis pariatur tenetur earum quam itaque similique mollitia non accusantium velit veritatis asperiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur natus dolor, laboriosam eum aliquid illo cupiditate doloremque! Laborum ad exercitationem amet numquam adipisci fuga officia, in perspiciatis laudantium eveniet earum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium vitae unde obcaecati natus fugiat quas provident, suscipit, itaque dolorem ducimus quod, at harum aperiam blanditiis ad voluptas illum maiores eius?</p>
+            <p class="announcement-text">{{announcment.message}}</p>
         </div>
-        <div class="announcement-container">
-            <div class="announcement-header">
-                <p class="author">Chris, CEO</p>
-                <p class="date">November 17, 2022</p>
+    </div>
+    <div *ngIf="announcementPopup" class="create-announcement-container">
+        <div class="popup-container">
+            <div class="popup-close-button" (click)="newAnnouncementPopup()" >x</div>
+            <div class="popup-name">{{userDummyDTO.profile.firstName}}</div>
+            <div class="popup-inner-container">
+                <div>Title</div>
+                <input #title class="popup-input" />
+                <div>Message</div>
+                <input #message class="popup-input" />
             </div>
-            <p class="announcement-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo repudiandae natus nihil, aspernatur omnis iste voluptate reiciendis nobis pariatur tenetur earum quam itaque similique mollitia non accusantium velit veritatis asperiores. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur natus dolor, laboriosam eum aliquid illo cupiditate doloremque! Laborum ad exercitationem amet numquam adipisci fuga officia, in perspiciatis laudantium eveniet earum! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium vitae unde obcaecati natus fugiat quas provident, suscipit, itaque dolorem ducimus quod, at harum aperiam blanditiis ad voluptas illum maiores eius?</p>
+            <button class="popup-submit-button" (click)="submitAnnouncement(title.value, message.value)">Submit</button>
         </div>
     </div>
 </div>
