@@ -2,22 +2,26 @@
 <p>A general view of all your members in your orginaztion</p>
 <div>
     <table>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Active</th>
-            <th>Admin</th>
-            <th>Status</th>
-        </tr>
-        <tr *ngFor="let user of users">
-            <td> {{ user.first }} {{ user.last }}</td>
-            <td> {{ user.email }} </td>
-            <td> {{ user.active }} </td>
-            <td> {{ user.admin }} </td>
-            <td> {{ user.status }}</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Active</th>
+                <th>Admin</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.profile.firstname }} {{ user.profile.lastname }}</td>
+                <td>{{ user.profile.email }}</td>
+                <td>{{ user.active }}</td>
+                <td>{{ user.isAdmin }}</td>
+                <td>{{ user.status }}</td>
+            </tr>
+        </tbody>
     </table>
 </div>
 <div>
-    <button>ADD USER</button>
+    <button mat-raised-button (click)="addUser()">ADD USER</button>
 </div>
