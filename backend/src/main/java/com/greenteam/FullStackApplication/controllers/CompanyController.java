@@ -44,6 +44,12 @@ public class CompanyController {
     	return companyService.getTeamProjects(cId, tId);
     }
     
+    @PostMapping("/{id}/teams")
+    public TeamDto setTeam(@RequestBody TeamDto t, @PathVariable Long id){
+    	return companyService.setTeam(t, id);
+    }
+    
+    
     
     
 }
