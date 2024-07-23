@@ -48,13 +48,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 60px;
+}
+
+.announcement-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 788px;
     background-color: #0B2D45;
     border-radius: 20px;
     color: white;
 }
 
-.announcment-header {
+.announcement-header {
     display: flex;
     justify-content: space-between;
     width: 100%;
