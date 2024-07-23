@@ -13,11 +13,9 @@ export class LoginComponent {
   email: String = "";
   password: String = "";
 
-  //Here we need to fetch a the user by username and password 
-  //If that person exists, then we navigate to select company 
-
-  async login() {
-    let response = post("users", ["login"], {username: this.password})
+  
+  login() {
+    //let response = post("users", ["login"], {username: this.password})
     
   }
 
