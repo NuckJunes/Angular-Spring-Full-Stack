@@ -13,7 +13,7 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    width: 100%;
+    width: 1000px;
 }
 
 .page-title {
@@ -27,6 +27,7 @@
     right: 75px;
     bottom: 0px;
     background-color: #1BA098;
+    border: none;
     color: white;
     font-size: 16.24px;
     text-align: center;
@@ -52,10 +53,6 @@
 }
 
 .announcement-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 788px;
     background-color: #0B2D45;
     border-radius: 20px;
@@ -88,4 +85,120 @@
     font-size: 18px;
     font-family: 'Inter';
     padding: 30px 80px;
+    text-align: left;
+}
+
+.create-announcement-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.popup-container {
+    background-color: #0B2D45;
+    width: 50%;
+    padding: 30px;
+    border-radius: 13px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #DEB992;
+    gap: 20px;
+    max-width: 600px;
+}
+
+.popup-inner-container {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-size: 17px;
+}
+
+.popup-close-button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    right: 5px;
+    border: 2px solid red;
+    border-radius: 50%;
+    text-align: center;
+    color: red;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.popup-name {
+    position: absolute;
+    top: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 22px;
+}
+
+.popup-submit-button {
+    margin-top: 140px;
+    height: 45px;
+    background-color: #1BA098;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 17px;
+    border: none;
+    border-radius: 11px;
+    width: 50%;
+}
+
+.popup-input {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-bottom: 1px solid #DEB992;
+    color: white;
+}
+
+.popup-input:focus {
+    outline: none;
+}
+
+@media screen and (max-width: 1001px) {
+    .page-container{
+        width: 100%;
+    }
+
+    .announcement-container {
+        width: 90%;
+    }
+
+    .announcements-header {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .announcement-header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .author, .date {
+        padding: 0;
+    }
+
+    .new-post-button {
+        position: relative;
+        right: 0;
+        left: 0;
+    }
 }
