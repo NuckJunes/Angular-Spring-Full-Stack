@@ -1,1 +1,12 @@
-<p>select-company works!</p>
+<div class="page-container">
+    <div class="page-title">Select Company</div>
+    <div class="selection-container">
+        <select class="company-selections">
+            <option value="" disabled selected hidden class="default-option">
+                Pick an option
+            </option>
+            <option *ngFor="let company of companies" class="option">{{company}}</option>
+        </select>
+        <img class="custom-arrow" src="../../assets/dropdownArrow.svg"/>
+    </div>
+</div>
