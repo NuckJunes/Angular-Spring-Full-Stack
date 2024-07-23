@@ -1,11 +1,12 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 
 import FullUserDTO from '../models/FullUserDTO';
 import ProfileDTO from '../models/ProfileDTO';
+import { post } from '../../services/api';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
 
 @Component({
@@ -27,17 +28,37 @@ export class UserRegComponent {
     },
     isAdmin: true,
     active: true,
-    status: "Working?",
+    status: "Active",
     companies: [],
     teams: []
   }];
 
+  userToAdd: FullUserDTO = {
+    id: 3,
+    profile: {
+      firstname: "Me",
+      lastname: "My Last name",
+      email: "something111@email.com",
+      phone: "020-020-2200"
+    },
+    isAdmin: false,
+    active: false,
+    status: "Pending",
+    companies: [],
+    teams: []
+  }
+  
   constructor(public dialog: MatDialog) {}
 
   addUser() {
-    const dialogRef = this.dialog.open(UserRegFormComponent);
+    const dialogRef = this.dialog.open(UserRegFormComponent, {
+      data: this.userToAdd
+    });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Closed User Add');
-    })
+      this.userToAdd = result;
+      this.users.push(this.userToAdd);
+      //here is were we post the new user
+      //let response =  post("users", [], this.userToAdd)
+    });
   }
 }

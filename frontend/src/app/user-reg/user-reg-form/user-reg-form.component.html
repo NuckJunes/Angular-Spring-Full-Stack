@@ -1,5 +1,7 @@
 <h2 mat-dialog-title>Some Title</h2>
 <mat-dialog-content>
-    <p>Does this actually work?</p>
+    <input type="text" placeholder="First Name" [(ngModel)]="userToAdd.profile.firstname">
+    <input type="text" placeholder="Last Name" [(ngModel)]="userToAdd.profile.lastname">
     <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="onSubmitClick()">Submit</button>
 </mat-dialog-content>
