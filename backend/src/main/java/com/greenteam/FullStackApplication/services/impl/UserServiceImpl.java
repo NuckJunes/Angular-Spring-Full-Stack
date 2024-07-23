@@ -2,6 +2,8 @@ package com.greenteam.FullStackApplication.services.impl;
 
 import com.greenteam.FullStackApplication.dtos.CredentialDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
+import com.greenteam.FullStackApplication.dtos.UserRequestDto;
+import com.greenteam.FullStackApplication.entities.Company;
 import com.greenteam.FullStackApplication.entities.Credential;
 import com.greenteam.FullStackApplication.entities.User;
 import com.greenteam.FullStackApplication.exceptions.BadRequestException;
@@ -41,5 +43,26 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.saveAndFlush(userToValidate);
         return fullUserMapper.entityToFullUserDto(userToValidate);
+    }
+
+    @Override
+    public FullUserDto createUser(Long id, UserRequestDto userRequestDto) {
+        Company company=validateService.findCompany(id);
+        if (userRequestDto.getCredentials()==null||userRequestDto.getProfile()==null||
+                userRequestDto.getCredentials().getUsername().isEmpty()||
+                userRequestDto.getCredentials().getPassword().isEmpty() ||
+                userRequestDto.getProfile().getFirstName().isEmpty() ||
+                userRequestDto.getProfile().getLastName().isEmpty() ||
+                userRequestDto.getProfile().getEmail().isEmpty()){
+            throw new BadRequestException("missing profile or credentials or both");
+        }
+        User user=fullUserMapper.requestDtoToEntity(userRequestDto);
+        user.setActive(true);
+        user.getCompanies().add(company);
+        try {
+            return fullUserMapper.entityToFullUserDto(userRepository.saveAndFlush(user));
+        }catch (RuntimeException e){
+            throw new BadRequestException("A user with that username already exists.Please try again");
+        }
     }
 }

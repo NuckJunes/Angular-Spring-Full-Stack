@@ -1,27 +1,24 @@
 package com.greenteam.FullStackApplication.services.impl;
 
-import com.greenteam.FullStackApplication.dtos.AnnouncementDto;
-import com.greenteam.FullStackApplication.dtos.FullUserDto;
-import com.greenteam.FullStackApplication.dtos.ProjectDto;
-import com.greenteam.FullStackApplication.dtos.TeamDto;
+import com.greenteam.FullStackApplication.dtos.*;
 import com.greenteam.FullStackApplication.entities.Announcements;
 import com.greenteam.FullStackApplication.entities.Company;
 import com.greenteam.FullStackApplication.entities.User;
 import com.greenteam.FullStackApplication.entities.Team;
 import com.greenteam.FullStackApplication.entities.Project;
+import com.greenteam.FullStackApplication.exceptions.NotFoundException;
 import com.greenteam.FullStackApplication.mappers.AnnouncementMapper;
 import com.greenteam.FullStackApplication.mappers.FullUserMapper;
 import com.greenteam.FullStackApplication.mappers.ProjectMapper; 
 import com.greenteam.FullStackApplication.mappers.TeamMapper;
 import com.greenteam.FullStackApplication.repositories.TeamRepository;
 import com.greenteam.FullStackApplication.services.CompanyService;
+import com.greenteam.FullStackApplication.services.UserService;
 import com.greenteam.FullStackApplication.services.ValidateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +29,7 @@ public class CompanyServiceImpl implements CompanyService {
     private final AnnouncementMapper announceMapper;
     private final ProjectMapper projectMapper;
     private final ValidateService validateService;
+    private final UserService userService;
     
     private final TeamRepository teamRepository;
     
@@ -55,8 +53,9 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Set<AnnouncementDto> getAnnouncements(Long id) {
         Company company=validateService.findCompany(id);
-        Set<Announcements> allAnnounces =new HashSet<>();
-        company.getAnnouncements().forEach(allAnnounces::add);
+        List<Announcements> sortedList=new ArrayList<>(company.getAnnouncements());
+        sortedList.sort(Comparator.comparing(Announcements::getDate).reversed());
+        Set<Announcements> allAnnounces=new HashSet<>(sortedList);
         return announceMapper.entitiesToDtos(allAnnounces);
     }
     
@@ -77,41 +76,31 @@ public class CompanyServiceImpl implements CompanyService {
     
     @Override
     public Set<ProjectDto> getTeamProjects(Long cid, Long tid) {
-    	Team team = validateService.findTeam(tid);
-    	Set<Project> allProjects = new HashSet<>();
-    	
-    		for(Project p : team.getProjects()) {
-    			allProjects.add(p);
-    		}
-    	return projectMapper.entitiesToDtos(allProjects);
+    	Company company=validateService.findCompany(cid);
+        Team team=validateService.findTeam(tid);
+        if (!company.getTeams().contains(team)){
+            throw new NotFoundException("A team with id "+tid+"does not exist at company with id"+cid);
+        }
+        Set<Project> filteredProjects=new HashSet<>();
+        team.getProjects().forEach(filteredProjects::add);
+        return projectMapper.entitiesToDtos(filteredProjects);
     }
     
     
     @Override
     public TeamDto setTeam(TeamDto t, Long id) {
-    	
-    	Optional<Team> optTeam = teamRepository.findById(id);
-		Team convertT = teamMapper.dtoToEntity(t);
-    			
-    	if(optTeam.isPresent()) {
-    		//projects are null when converted from dtoToEntity;
-    		convertT.setProjects(optTeam.get().getProjects());
-    		convertT.setId(id);
-    	}
-    	
-    	else {
-    		convertT = teamMapper.dtoToEntity(t);
-    	}
-    	
-		teamRepository.saveAndFlush(convertT);
-		return teamMapper.entityToDto(convertT);
+        Company company=validateService.findCompany(id);
+        Team team=teamMapper.dtoToEntity(t);
+        team.setCompany(company);
+        return teamMapper.entityToDto(teamRepository.saveAndFlush(team));
     }
-    
-    
-    
-    
 
-    
-    
+    @Override
+    public Set<CompanyDto> getAllCompanies(CredentialDto credentialDto) {
+        FullUserDto fullUserDto=userService.login(credentialDto);
+        return fullUserDto.getCompanies();
+    }
+
+
 }
 

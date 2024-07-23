@@ -1,10 +1,12 @@
 package com.greenteam.FullStackApplication.services.impl;
 
 import com.greenteam.FullStackApplication.entities.Company;
+import com.greenteam.FullStackApplication.entities.Project;
 import com.greenteam.FullStackApplication.entities.Team;
 import com.greenteam.FullStackApplication.entities.User;
 import com.greenteam.FullStackApplication.exceptions.NotFoundException;
 import com.greenteam.FullStackApplication.repositories.CompanyRepository;
+import com.greenteam.FullStackApplication.repositories.ProjectRepository;
 import com.greenteam.FullStackApplication.repositories.TeamRepository;
 import com.greenteam.FullStackApplication.repositories.UserRepository;
 import com.greenteam.FullStackApplication.services.ValidateService;
@@ -19,6 +21,7 @@ public class ValidateServiceImpl implements ValidateService {
     private final UserRepository userRepository;
     private final CompanyRepository companyRepository;
     private final TeamRepository teamRepository;
+    private final ProjectRepository projectRepository;
     @Override
     public User findUser(String username) {
         Optional<User> user=userRepository.findByCredentialsUsernameAndActiveTrue(username);
@@ -44,6 +47,24 @@ public class ValidateServiceImpl implements ValidateService {
             throw new NotFoundException("No team with id " + id);
         }
         return team.get();
+    }
+
+    @Override
+    public User findUser(Long id) {
+        Optional<User> user= userRepository.findById(id);
+        if(user.isEmpty()){
+            throw new NotFoundException("There doesnt appear to be a user with that id");
+        }
+        return user.get();
+    }
+
+    @Override
+    public Project findProject(Long projectId) {
+        Optional<Project> project=projectRepository.findById(projectId);
+        if(project.isEmpty()){
+            throw new NotFoundException("There doesn't appear to be a project with that id");
+        }
+        return project.get();
     }
 
 
