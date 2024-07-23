@@ -1,5 +1,6 @@
 package com.greenteam.FullStackApplication.services.impl;
 
+import com.greenteam.FullStackApplication.dtos.BasicUserDto;
 import com.greenteam.FullStackApplication.dtos.CredentialDto;
 import com.greenteam.FullStackApplication.dtos.FullUserDto;
 import com.greenteam.FullStackApplication.dtos.UserRequestDto;
@@ -64,5 +65,36 @@ public class UserServiceImpl implements UserService {
         }catch (RuntimeException e){
             throw new BadRequestException("A user with that username already exists.Please try again");
         }
+    }
+
+    @Override
+    public BasicUserDto updateUser(Long id, UserRequestDto userRequestDto) {
+        User user=validateService.findUser(id);
+        if(userRequestDto.getCredentials()!=null){
+            if (userRequestDto.getCredentials().getPassword()!=null){
+                user.getCredentials().setPassword(userRequestDto.getCredentials().getPassword());
+                user.setStatus("JOINED");
+            }
+            if (userRequestDto.getCredentials().getUsername()!=null){
+                user.getCredentials().setUsername(userRequestDto.getCredentials().getUsername());
+            }
+            if (userRequestDto.getProfile()!=null){
+                if(userRequestDto.getProfile().getEmail()!=null){
+                    user.getProfile().setEmail(userRequestDto.getProfile().getEmail());
+                }
+                if (userRequestDto.getProfile().getPhoneNumber()!=null){
+                    user.getProfile().setPhone(userRequestDto.getProfile().getPhoneNumber());
+                }
+                if(userRequestDto.getProfile().getFirstName()!=null){
+                    user.getProfile().setFirstName(userRequestDto.getProfile().getFirstName());
+                }
+                if(userRequestDto.getProfile().getLastName()!=null){
+                    user.getProfile().setLastName(userRequestDto.getProfile().getFirstName());
+                }
+            }
+
+        }
+        userRepository.saveAndFlush(user);
+        return basicUserMapper.entityToBasicUserDto(user);
     }
 }
