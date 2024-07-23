@@ -74,6 +74,18 @@ public class CompanyServiceImpl implements CompanyService {
     	return projectMapper.entitiesToDtos(allProjects);
     }
     
+    @Override
+    public Set<ProjectDto> getTeamProjects(Long cid, Long tid) {
+    	Team team = validateService.findTeam(tid);
+    	Set<Project> allProjects = new HashSet<>();
+    	
+    		for(Project p : team.getProjects()) {
+    			allProjects.add(p);
+    		}
+    	return projectMapper.entitiesToDtos(allProjects);
+    }
+
+    
     
 }
 
