@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -84,6 +85,31 @@ public class CompanyServiceImpl implements CompanyService {
     		}
     	return projectMapper.entitiesToDtos(allProjects);
     }
+    
+    
+    @Override
+    public TeamDto setTeam(TeamDto t, Long id) {
+    	
+    	Optional<Team> optTeam = teamRepository.findById(id);
+		Team convertT = teamMapper.dtoToEntity(t);
+    			
+    	if(optTeam.isPresent()) {
+    		//projects are null when converted from dtoToEntity;
+    		convertT.setProjects(optTeam.get().getProjects());
+    		convertT.setId(id);
+    	}
+    	
+    	else {
+    		convertT = teamMapper.dtoToEntity(t);
+    	}
+    	
+		teamRepository.saveAndFlush(convertT);
+		return teamMapper.entityToDto(convertT);
+    }
+    
+    
+    
+    
 
     
     
