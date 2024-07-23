@@ -34,10 +34,16 @@ public class CompanyController {
         return companyService.getAnnouncements(id);
     }
     
+    @GetMapping("/{id}/projects")
     public Set<ProjectDto> getProjects(@PathVariable Long id){
     	return companyService.getAllProjects(id);
     }
     
-
+    @GetMapping("/{cId}/teams/{tId}/projects")
+    public Set<ProjectDto> getTeamProjects(@PathVariable Long cId, @PathVariable Long tId){
+    	return companyService.getTeamProjects(cId, tId);
+    }
+    
+    
     
 }

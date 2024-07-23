@@ -15,5 +15,6 @@ public interface CompanyService {
     Set<TeamDto> getAllTeams(Long id);
     Set<AnnouncementDto> getAnnouncements(Long id);
     Set<ProjectDto> getAllProjects(Long id);
+    Set<ProjectDto> getTeamProjects(Long cId, Long tId);
 
 }
