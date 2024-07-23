@@ -6,8 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 
 import FullUserDTO from '../models/FullUserDTO';
 import ProfileDTO from '../models/ProfileDTO';
-import { post } from '../../services/api';
+import { post, get } from '../../services/api';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
+import { userInfo } from '../../services/userInfo';
 
 @Component({
   selector: 'app-user-reg',
@@ -47,8 +48,21 @@ export class UserRegComponent {
     companies: [],
     teams: []
   }
+  id: string = "";
   
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private userInfo: userInfo) {}
+
+  ngOnInit(): void {
+    this.userInfo.getCompanyID().subscribe((value) => (this.id = value.toString()));
+    //getUsers();
+  }
+
+  async getUsers() {
+    let response = await get("company", [this.id, "users"]);
+    if(response) {
+      this.users = response;
+    }
+  }
 
   addUser() {
     const dialogRef = this.dialog.open(UserRegFormComponent, {
@@ -58,7 +72,7 @@ export class UserRegComponent {
       this.userToAdd = result;
       this.users.push(this.userToAdd);
       //here is were we post the new user
-      //let response =  post("users", [], this.userToAdd)
+      //let response =  post("company", [id, "user"], this.userToAdd)
     });
   }
 }
