@@ -1,1 +1,18 @@
-<p>teams works!</p>
+<h1>Teams</h1>
+<div class="teams-container">
+    <div class="team-container" *ngFor="let team of teams" (click)="projects(team.id)">
+        <div>
+            <h3 class="team-name">{{ team.name }}</h3>
+            <p class="team-projects-num"># of Projects: {{ loadProjects(team.id) }}</p>
+        </div>
+        <div>
+            <h3 class="member-header">Members</h3>
+            <div class="team-member" *ngFor="let member of team.users">
+                <p>{{ member.profile.firstname }} {{ member.profile.lastname }}</p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p>Add team</p>
+    </div>
+</div>
