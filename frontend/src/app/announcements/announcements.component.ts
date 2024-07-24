@@ -1,64 +1,47 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavmenuComponent } from "../navmenu/navmenu.component";
-
-interface Announcement {
-  date: string,
-  title: string,
-  message: string,
-  author: string
-}
-
-interface Profile {
-  firstName: string
-}
-
-interface User {
-  admin: boolean,
-  profile: Profile
-}
+import FullUserDTO from '../models/FullUserDTO';
+import AnnouncementDTO from '../models/AnnouncementDTO';
+import { userInfo } from '../../services/userInfo';
 
 @Component({
   selector: 'app-announcements',
   standalone: true,
   imports: [CommonModule, NavmenuComponent],
   templateUrl: './announcements.component.html',
-  styleUrl: './announcements.component.css'
+  styleUrls: ['./announcements.component.css']
 })
-export class AnnouncementsComponent {
+export class AnnouncementsComponent implements OnInit {
 
-  constructor() {}
-
+  user: FullUserDTO | undefined = undefined;
+  announcements: AnnouncementDTO[] = [];
   announcementPopup: boolean = false;
 
-  userDummyDTO: User = {
-    admin: true,
-    profile: {
-      firstName: 'Dakotah'
-    }
-  }
-
-  dummyDTO: Announcement[] = [
-    {
-      date: 'November 17, 2022',
-      title: 'CEO',
-      message: 'What should we do about lorem? Lorem is running rampit throughout the company as a filler for posts and data and we would prefer you not utlize this method of posting anymore. We have testing software and items in place, please make use of those for the future if you need to test functionality of a post. Lorem just takes up time and space and we have decided we no longer want to use it going forward.',
-      author: 'Chris'
-    },
-    {
-      date: 'November 19, 2022',
-      title: 'SDE',
-      message: 'L take, Chris. 👎',
-      author: 'Dakotah'
-    }
-  ]
+  constructor(private userService: userInfo) {}
 
   ngOnInit() {
-    this.sortAnnouncements();
+    this.userService.getFullUser().subscribe(user => {
+      this.user = user;
+    })
+    this.fetchAnnouncements();
+    console.log(this.user);
   }
 
-  sortAnnouncements() {
-    this.dummyDTO.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  async fetchAnnouncements() {
+    try {
+      const response = await fetch('http://localhost:8080/company/1/announcements');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data: AnnouncementDTO[] = await response.json();
+      this.announcements = data.map(announcement => ({
+        ...announcement,
+        date: new Date(announcement.date).toLocaleDateString()
+      }));
+    } catch (error) {
+      console.error('Error fetching announcements:', error);
+    }
   }
 
   newAnnouncementPopup() {
@@ -66,13 +49,6 @@ export class AnnouncementsComponent {
   }
 
   submitAnnouncement(title: string, message: string) {
-    this.dummyDTO.push({
-      date: 'June 23, 2024',
-      title,
-      message,
-      author: this.userDummyDTO.profile.firstName
-    });
-    this.announcementPopup = false;
-    this.sortAnnouncements();
+    // Implementation for submitting an announcement
   }
 }

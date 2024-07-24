@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { GeneralService } from '../../services/general.service';
 import { Router } from '@angular/router';
 import UserRequestDto from '../models/UserRequestDto';
+import { userInfo } from '../../services/userInfo';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +37,7 @@ export class LoginComponent {
 
   constructor(
     private generalService:GeneralService,
+    private userInfo: userInfo,
     private router: Router,
     private http: HttpClient
   ) {}
@@ -58,6 +60,7 @@ export class LoginComponent {
         this.user.profile = this.userData.profile;
         this.user.credentials =this.userData.credentials;
         this.user.admin = this.userData.admin;
+        this.userInfo.updateFullUserSource(this.userData);
         console.log(this.user.admin)
         localStorage.setItem('user', JSON.stringify(this.userData));
         if (this.userData.status === 'PENDING') this.isPending = true;

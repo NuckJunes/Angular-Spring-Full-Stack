@@ -1,8 +1,13 @@
 import BasicUserDTO from "./BasicUserDTO";
 export default interface AnnouncementDTO {
     id: number,
-    date: Date,
+    date: string,
     title: string,
     message: string,
-    author: BasicUserDTO
+    author: {
+        profile: {
+            firstName: string,
+            lastName: string
+        }
+    }
 };

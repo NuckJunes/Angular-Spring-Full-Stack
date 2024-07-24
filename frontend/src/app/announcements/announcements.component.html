@@ -2,22 +2,22 @@
 <div class="page-container">
     <div class="announcements-header">
         <h1 class="page-title">Announcements</h1>
-        <button *ngIf="userDummyDTO.admin" (click)="newAnnouncementPopup()" class="new-post-button">New</button>
+        <button *ngIf="user && user.admin" (click)="newAnnouncementPopup()" class="new-post-button">New</button>
     </div>
     <div class="break"></div>
     <div class="announcements-container">
-        <div *ngFor="let announcment of dummyDTO" class="announcement-container">
+        <div *ngFor="let announcement of announcements" class="announcement-container">
             <div class="announcement-header">
-                <p class="author">{{announcment.author}}, {{announcment.title}}</p>
-                <p class="date">{{announcment.date}}</p>
+                <p class="author">{{announcement.author.profile.firstName}}, {{announcement.title}}</p>
+                <p class="date">{{announcement.date}}</p>
             </div>
-            <p class="announcement-text">{{announcment.message}}</p>
+            <p class="announcement-text">{{announcement.message}}</p>
         </div>
     </div>
-    <div *ngIf="announcementPopup" class="create-announcement-container">
+    <div *ngIf="announcementPopup && user" class="create-announcement-container">
         <div class="popup-container">
             <div class="popup-close-button" (click)="newAnnouncementPopup()" >x</div>
-            <div class="popup-name">{{userDummyDTO.profile.firstName}}</div>
+            <div class="popup-name">{{user.profile.firstName}}</div>
             <div class="popup-inner-container">
                 <div>Title</div>
                 <input #title class="popup-input" />
