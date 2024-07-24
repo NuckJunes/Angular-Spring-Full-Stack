@@ -1,13 +1,10 @@
+import ProfileDTO from "./ProfileDTO";
+
 export default interface UserRequestDto{
     credentials: {
-        username: '',
-        password: '',
+        username: string,
+        password: string,
       },
-      profile: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: ''
-      },
+      profile:ProfileDTO
       admin: false,
 }

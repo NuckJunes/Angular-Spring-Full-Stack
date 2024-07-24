@@ -1,6 +1,14 @@
-import { response } from "express";
+import { HttpHeaders } from "@angular/common/http";
+
 
 const ROOT = "https://localhost:8080/";
+
+const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    verifySSL: false // <--- Add this line
+  };
 
     //function to parse the returning information as json
     const parseJSON = (response: any) => {

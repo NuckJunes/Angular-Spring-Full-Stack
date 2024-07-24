@@ -23,8 +23,8 @@ export class TeamsComponent {
       {
         id: 0,
         profile: {
-          firstname: "Dwayne",
-          lastname: "Johnson",
+          firstName: "Dwayne",
+          lastName: "Johnson",
           phone: "000-000-0000",
           email: "mail@mail.com"
         },

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { NavmenuComponent } from "../navmenu/navmenu.component";
+
 
 interface Announcement {
   date: string,
@@ -21,7 +21,7 @@ interface User {
 @Component({
   selector: 'app-announcements',
   standalone: true,
-  imports: [CommonModule, NavmenuComponent],
+  imports: [CommonModule],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.css'
 })

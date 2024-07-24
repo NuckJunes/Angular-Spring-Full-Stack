@@ -1,10 +1,90 @@
-.page-container {
+.container {
+    /* height: 98vh; */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    margin-top: 60px;
+    margin-left: auto; /* add this line */
+  margin-right: auto;
+    color:var(--blue-text);
+    z-index: 1000;
+    overflow: visible;
+  }
+  
+  .title-div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  
+  .title-div h1 {
+    margin-bottom: 0;
     font-weight: 400;
-    font-family: 'Mulish';
-    width: 1000px;
+  }
+  
+  .title-div p {
+    margin-top: 10px;
+    margin-bottom: 50px;
+  }
+  
+  .table1 {
+    border: 1px solid var(--beige);
+    color: var(--beige);
+    padding: 30px;
+    width: 800px;
+    text-align: center;
+    justify-content: center;
     margin: 0 auto;
-}
+    
+  }
+  
+  th {
+    color: white;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(222, 185, 146, 0.5);
+    justify-content: center;
+  }
+  
+  td {
+    padding-bottom: 8px;
+    padding-top: 8px;
+    border-bottom: 1px solid rgba(222, 185, 146, 0.5);
+    text-align: center;
+  }
+  
+  .text-danger {
+    color: rgba(255, 0, 0, 0.8);
+  }
+  
+  .text-success {
+    color: green;
+  }
+  
+  .btn {
+    box-shadow: 0px 0px 5px black;
+    transition: all 0.2s;
+    background-color: var(--blue-text)!important;
+    color: white!important;
+    margin-left: 100px;
+  }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  .btn-container-div {
+    padding-top: 20px;
+  }
+  
+
+  .create-user-btn {
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    color: white;
+    padding: 10px 20px;
+    margin: 5px;
+    margin-left: 250px;
+  }
