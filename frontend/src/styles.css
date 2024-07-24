@@ -3,3 +3,12 @@ body {
     margin: 0;
     background-color: #051622;
 }
+:root {
+    --background: rgba(5, 22, 34, 255);
+    --blue-text: rgba(27, 160, 152, 1);
+    --beige: rgba(222, 185, 146, 255);
+    --dark-blue: rgba(32, 72, 99, 255);
+    --darker-blue: rgba(11, 45, 69, 255);
+  }
+
+  

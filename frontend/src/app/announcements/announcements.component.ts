@@ -8,7 +8,7 @@ import { userInfo } from '../../services/userInfo';
 @Component({
   selector: 'app-announcements',
   standalone: true,
-  imports: [CommonModule, NavmenuComponent],
+  imports: [CommonModule],
   templateUrl: './announcements.component.html',
   styleUrls: ['./announcements.component.css']
 })

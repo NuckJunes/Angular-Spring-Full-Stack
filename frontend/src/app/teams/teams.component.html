@@ -8,11 +8,11 @@
         <div>
             <h3 class="member-header">Members</h3>
             <div class="team-member" *ngFor="let member of team.users">
-                <p>{{ member.profile.firstname }} {{ member.profile.lastname }}</p>
+                <p>{{ member.profile.firstName }} {{ member.profile.lastName }}</p>
             </div>
         </div>
     </div>
-    <div>
+    <div class="team-container" (click)="addTeam()">
         <p>Add team</p>
     </div>
 </div>

@@ -60,14 +60,16 @@ export class LoginComponent {
         this.user.profile = this.userData.profile;
         this.user.credentials =this.userData.credentials;
         this.user.admin = this.userData.admin;
+        this.userData.status = 'JOINED';
         this.userInfo.updateFullUserSource(this.userData);
         console.log(this.user.admin)
         localStorage.setItem('user', JSON.stringify(this.userData));
         if (this.userData.status === 'PENDING') this.isPending = true;
         else {
-          if (this.userData.admin) {
-            this.router.navigate(['/select-company']);
-          } else {
+         // if (this.userData.admin) {
+          //  this.router.navigate(['/select-company']);
+         // }
+           {
             localStorage.setItem('companyId', this.userData.companies[0].id);
             localStorage.setItem(
               'companyName',

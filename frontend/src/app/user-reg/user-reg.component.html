@@ -1,29 +1,36 @@
-<div class="page-container">
-    <h1>User Registry</h1>
-    <p>A general view of all your members in your orginaztion</p>
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Active</th>
-                    <th>Admin</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>{{ user.profile.firstname }} {{ user.profile.lastname }}</td>
-                    <td>{{ user.profile.email }}</td>
-                    <td>{{ user.active }}</td>
-                    <td>{{ user.isAdmin }}</td>
-                    <td>{{ user.status }}</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="title-div">
+      <h1>User Registry</h1>
+      <p>A general view of all your members in your organization</p>
     </div>
-    <div>
-        <button mat-raised-button (click)="addUser()">ADD USER</button>
+    <div class="users-table-div">
+      <table class="table1" [cellSpacing]="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Active</th>
+            <th>Admin</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id='line' *ngFor="let user of users">
+            <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+            <td>{{ user.profile.email }}</td>
+            <td [ngClass]="{'text-success': user.active, 'text-danger': !user.active}">{{ user.active? 'Yes' : 'No' }}</td>
+            <td [ngClass]="{'text-success': user.admin, 'text-danger': !user.admin}">{{ user.admin? 'Yes' : 'No' }}</td>
+            <td>{{ user.status }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-</div>
+    <div class="btn-container-div">
+        <button class="create-user-btn btn" (click)="toggleUserOverlay()">
+            Create New User
+          </button>
+    </div>
+  </div>
+  <div *ngIf="showUserOverlay">
+    <app-user-reg-form (updateUserOverlayVisibility)="onOverlayVisibilityChange()"></app-user-reg-form>
+  </div>

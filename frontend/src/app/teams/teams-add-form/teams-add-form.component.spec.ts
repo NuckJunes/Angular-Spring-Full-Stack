@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavmenuComponent } from './navmenu.component';
+import { TeamsAddFormComponent } from './teams-add-form.component';
 
-describe('NavmenuComponent', () => {
-  let component: NavmenuComponent;
-  let fixture: ComponentFixture<NavmenuComponent>;
+describe('TeamsAddFormComponent', () => {
+  let component: TeamsAddFormComponent;
+  let fixture: ComponentFixture<TeamsAddFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavmenuComponent]
+      imports: [TeamsAddFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NavmenuComponent);
+    fixture = TestBed.createComponent(TeamsAddFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
