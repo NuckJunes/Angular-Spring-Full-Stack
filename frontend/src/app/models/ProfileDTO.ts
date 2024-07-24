@@ -1,6 +1,6 @@
 export default interface ProfileDTO {
-    firstname: string,
-    lastname: string,
+    firstName: string,
+    lastName: string,
     email: string,
     phone: string
 };
