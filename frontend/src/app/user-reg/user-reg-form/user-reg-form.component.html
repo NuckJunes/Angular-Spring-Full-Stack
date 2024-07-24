@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Some Title</h2>
+<mat-dialog-content>
+    <div>
+        <input type="text" placeholder="first name" [(ngModel)]="userToAdd.profile.firstname">
+        <input type="text" placeholder="last name" [(ngModel)]="userToAdd.profile.lastname">
+    </div>
+    <div>
+        <input type="text" placeholder="email" [(ngModel)]="userToAdd.profile.email">
+    </div>
+    <div>
+        <input type="text" placeholder="phone" [(ngModel)]="userToAdd.profile.firstname">
+    </div>
+    <div>
+    </div>
+
+    <button mat-button (click)="onCancelClick()">Cancel</button>
+    <button mat-button (click)="onSubmitClick()">Submit</button>
+</mat-dialog-content>
