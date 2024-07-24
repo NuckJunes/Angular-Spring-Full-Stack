@@ -4,11 +4,11 @@
 </div>
 <div class="login">
     <!-- ICON GOES HERE -->
-
-     <label for="email">email</label>
-     <input type="text" name="email">
+    <img class="logo" src="../../assets/app-icon.png" alt="">
+     <label for="username">username</label>
+     <input #username type="text" name="email" (input)="storeUsername(username.value)">
      <label for="password">password</label>
-     <input type="text" name="password">
+     <input #password type="text" name="password"(input)="storePassword(password.value)">
 
      <button (click)="login()">Login</button>
 </div>

@@ -16,5 +16,5 @@ public class Profile {
     @Column(nullable = false)
     private String email;
 
-    private String phone;
+    private String phoneNumber;
 }

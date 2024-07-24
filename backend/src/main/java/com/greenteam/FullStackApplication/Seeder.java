@@ -33,6 +33,7 @@ public class Seeder implements CommandLineRunner {
 
         Company company1 = new Company();
         Company company2 = new Company();
+        Company company3=new Company();
 
         Project project1 = new Project();
         Project project2 = new Project();
@@ -55,7 +56,7 @@ public class Seeder implements CommandLineRunner {
         profile1.setFirstName("Bobby");
         profile1.setLastName("Booshay");
         profile1.setEmail("foosball@email.com");
-        profile1.setPhone("(111) 111-1111");
+        profile1.setPhoneNumber("(111) 111-1111");
         user1.setProfile(profile1);
         user1.setActive(true);
         user1.setStatus("JOINED");
@@ -69,7 +70,7 @@ public class Seeder implements CommandLineRunner {
         profile2.setFirstName("Tony");
         profile2.setLastName("Stark");
         profile2.setEmail("ironman@email.com");
-        profile2.setPhone("(222) 222-2222");
+        profile2.setPhoneNumber("(222) 222-2222");
         user2.setProfile(profile2);
         user2.setActive(true);
         user2.setStatus("JOINED");
@@ -83,7 +84,7 @@ public class Seeder implements CommandLineRunner {
         profile3.setFirstName("Steve");
         profile3.setLastName("Rogers");
         profile3.setEmail("captainamerica@email.com");
-        profile3.setPhone("(333) 333-3333");
+        profile3.setPhoneNumber("(333) 333-3333");
         user3.setProfile(profile3);
         user3.setStatus("JOINED");
 
@@ -96,7 +97,7 @@ public class Seeder implements CommandLineRunner {
         profile4.setFirstName("Bruce");
         profile4.setLastName("Banner");
         profile4.setEmail("hulk@email.com");
-        profile4.setPhone("(444) 444-4444");
+        profile4.setPhoneNumber("(444) 444-4444");
         user4.setProfile(profile4);
         user4.setActive(true);
         user4.setStatus("JOINED");
@@ -110,7 +111,7 @@ public class Seeder implements CommandLineRunner {
         profile5.setFirstName("Thanos");
         profile5.setLastName("Purpleman");
         profile5.setEmail("thanos@email.com");
-        profile5.setPhone("(555) 555-5555");
+        profile5.setPhoneNumber("(555) 555-5555");
         user5.setProfile(profile5);
         user5.setStatus("JOINED");
         user5.setActive(true);
@@ -125,7 +126,7 @@ public class Seeder implements CommandLineRunner {
         profile6.setFirstName("Ultron");
         profile6.setLastName("Metalman");
         profile6.setEmail("ultron@email.com");
-        profile6.setPhone("(888) 888-8888");
+        profile6.setPhoneNumber("(888) 888-8888");
         user6.setProfile(profile6);
         user6.setActive(true);
         user6.setAdmin(true);
@@ -140,7 +141,7 @@ public class Seeder implements CommandLineRunner {
         profile7.setFirstName("Jacob");
         profile7.setLastName("Taylor");
         profile7.setEmail("jacob@email.com");
-        profile7.setPhone("(000) 000-0000");
+        profile7.setPhoneNumber("(000) 000-0000");
         user7.setProfile(profile7);
         user7.setActive(true);
         user7.setAdmin(true);
@@ -179,17 +180,23 @@ public class Seeder implements CommandLineRunner {
         announcement5.setCompany(company2);
         announcement5.setAuthor(user3);
 
-        company1.setName("Jacob");
+        company1.setName("Cook Systems");
         company1.setDescription("start up 1");
         company1.setAnnouncements(new HashSet<Announcements>(Arrays.asList(announcement1, announcement2)));
         company1.setEmployees(new HashSet<User>(Arrays.asList(user1, user2,  user7)));
         company1.setTeams(new HashSet<Team>(Arrays.asList(team1, team2, team3, team4, team5, team6)));
 
-        company2.setName("Taylor");
+        company2.setName("Fedex");
         company2.setDescription("start up 2");
         company2.setAnnouncements(new HashSet<Announcements>(Arrays.asList(announcement3)));
         company2.setEmployees(new HashSet<User>(Arrays.asList(user3, user4, user5, user6)));
         company2.setTeams(new HashSet<Team>(Arrays.asList(team7)));
+
+        company3.setName("Google");
+        company3.setDescription("start up 2");
+        company3.setAnnouncements(new HashSet<Announcements>(Arrays.asList(announcement3)));
+        company3.setEmployees(new HashSet<User>(Arrays.asList(user3, user4, user5, user6)));
+        company3.setTeams(new HashSet<Team>(Arrays.asList(team7)));
 
         project1.setName("First software project");
         project1.setDescription("building website");

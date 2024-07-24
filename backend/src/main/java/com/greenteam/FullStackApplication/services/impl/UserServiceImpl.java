@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
                     user.getProfile().setEmail(userRequestDto.getProfile().getEmail());
                 }
                 if (userRequestDto.getProfile().getPhoneNumber()!=null){
-                    user.getProfile().setPhone(userRequestDto.getProfile().getPhoneNumber());
+                    user.getProfile().setPhoneNumber(userRequestDto.getProfile().getPhoneNumber());
                 }
                 if(userRequestDto.getProfile().getFirstName()!=null){
                     user.getProfile().setFirstName(userRequestDto.getProfile().getFirstName());

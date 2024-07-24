@@ -1,0 +1,84 @@
+:root{
+    --blue-text:rgba(27, 160, 152, 0.8);
+    --background:#051622;
+}
+  
+  .logo {
+    width: 90px;
+  }
+  
+  .login {
+    width: 97vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    color: #1BA098;
+    border: 2px solid beige;
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.411);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 35vw;
+    height: 70vh;
+    position: relative;
+    
+  }
+  
+  
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+   
+  .app-name {
+    color: #1BA098;
+    font-weight: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  input {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    background: none;
+    border: none;
+    color: var(--blue-text);
+    border-bottom: 2px solid #ccc;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+  }
+  
+  button {
+    border: 2px solid rgba(27, 160, 152, 0.8);
+    border-radius: 50px;
+    background-color: var(--background);
+    color: white;
+    margin-top: 70px;
+    padding: 10px 40px;
+    cursor: pointer;
+    transition: all 0.2s
+  }
+  
+  button:hover .submit-button {
+    border: 2px solid rgba(27, 160, 152, 0.8)
+  }
+  h1,h2{
+    font-weight: 100;
+  }
+  
+
+ 
