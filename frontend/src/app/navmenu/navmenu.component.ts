@@ -2,11 +2,12 @@ import { Component, HostListener } from '@angular/core';
 import { GeneralService } from '../../services/general.service';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navmenu',
   standalone: true,
-  imports: [NgClass,NgIf],
+  imports: [NgClass,NgIf,LoginComponent],
   templateUrl: './navmenu.component.html',
   styleUrl: './navmenu.component.css'
 })
