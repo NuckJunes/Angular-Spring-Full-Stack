@@ -1,7 +1,16 @@
 <h1>Teams</h1>
-<div *NgFor="let team of teams">
+<div *NgFor="let team of teams" (click)="projects(team.id)">
     <div>
         <h3>{{ team.name }}</h3>
-        <p>{{ loadProjects(team.id) }}</p>
+        <p># of Projects: {{ loadProjects(team.id) }}</p>
     </div>
+    <div>
+        <h3>Members</h3>
+        <div *NgFor="let member of team.users">
+            <p>{{ member.profile.firstname }} {{ member.profile.lastname }}</p>
+        </div>
+    </div>
+</div>
+<div>
+    <p>Add team</p>
 </div>

@@ -38,5 +38,11 @@ export class TeamsComponent {
     }
   }
 
+  projects(teamId: number) {
+    //navigate to projects page and update current teamid to be this input
+    this.userInfo.updateTeamIDSource(teamId);
+    
+  }
+
   
 }
