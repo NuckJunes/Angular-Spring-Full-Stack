@@ -13,4 +13,8 @@
         <p>{{ user.profile.firstname }} {{ user.profile.lastname }}</p>
         <button (click)="removeUser(user.id)">X</button>
     </div>
+    <div>
+        <button mat-button (click)="onCancelClick()">Cancel</button>
+        <button mat-button (click)="onSubmitClick()">Submit</button>
+    </div>
 </mat-dialog-content>

@@ -49,7 +49,7 @@ export class TeamsAddFormComponent {
 
   ngOnInit() {
     //Fill the users array with all users in a company
-    this.generateUsers();
+    //this.generateUsers();
   }
 
   async generateUsers() {
