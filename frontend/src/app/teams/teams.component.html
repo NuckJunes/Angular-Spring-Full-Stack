@@ -1,1 +1,7 @@
-<p>teams works!</p>
+<h1>Teams</h1>
+<div *NgFor="let team of teams">
+    <div>
+        <h3>{{ team.name }}</h3>
+        <p>{{ loadProjects(team.id) }}</p>
+    </div>
+</div>
