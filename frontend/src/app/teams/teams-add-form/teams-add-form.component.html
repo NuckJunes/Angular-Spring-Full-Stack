@@ -6,7 +6,11 @@
     <input type="text" name="description" placeholder="description" [(ngModel)]="teamToAdd.description">
     <h2>Add Members</h2>
     <!-- Drop Down of Users -->
+     <mat-select (valueChange)="addUser()" [(value)]="currentUser">
+        <mat-option *ngFor="let user of users"></mat-option>
+     </mat-select>
     <div *ngFor="let user of teamToAdd.users">
         <p>{{ user.profile.firstname }} {{ user.profile.lastname }}</p>
+        <button (click)="removeUser(user.id)">X</button>
     </div>
 </mat-dialog-content>
