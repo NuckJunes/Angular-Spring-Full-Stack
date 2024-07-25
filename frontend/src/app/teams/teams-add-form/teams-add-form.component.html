@@ -1,30 +1,43 @@
-<h2 mat-dialog-title>Some Title</h2>
-<mat-dialog-content>
-  <label for="team-name">Team Name</label>
-  <input
-    type="text"
-    name="team-name"
-    placeholder="team name"
-    [(ngModel)]="teamToAdd.name"
-  />
-  <label for="description">Description</label>
-  <input
-    type="text"
-    name="description"
-    placeholder="description"
-    [(ngModel)]="teamToAdd.description"
-  />
-  <h2>Add Members</h2>
-  <!-- Drop Down of Users -->
-    <select [(ngModel)]="currentUser" (change)="addUser($event)">
-      <option *ngFor="let user of users" [ngValue]="user">{{ user.profile.firstName }} {{ user.profile.lastName }}</option>
+<div class="form-container">
+  <h2 mat-dialog-title class="mat-dialog-title"></h2>
+  <mat-dialog-content>
+    <div class="input-group">
+      <label for="team-name">Team Name</label>
+      <input
+        type="text"
+        name="team-name"
+        placeholder=""
+        [(ngModel)]="teamToAdd.name"
+      />
+    </div>
+    <div class="input-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        name="description"
+        placeholder=""
+        [(ngModel)]="teamToAdd.description"
+      />
+    </div>
+
+    <h2>Select Members</h2>
+    <!-- Drop Down of Users -->
+    <select
+      [(ngModel)]="currentUser"
+      (change)="addUser($event)"
+      class="select-members-dropdown"
+    >
+      <option *ngFor="let user of users" [ngValue]="user">
+        {{ user.profile.firstName }} {{ user.profile.lastName }}
+      </option>
     </select>
     <div *ngFor="let user of teamToAdd.teammates">
-      <p>{{ user.profile.firstName }} {{ user.profile.lastName }} </p>
+      <p>{{ user.profile.firstName }} {{ user.profile.lastName }}</p>
       <button (click)="removeUser(user.id)">X</button>
-    </div>  
-  <div>
-    <button mat-button (click)="onCancelClick()">Cancel</button>
-    <button mat-button (click)="onSubmitClick()">Submit</button>
-  </div>
-</mat-dialog-content>
+    </div>
+    <div class="action-buttons">
+      <button mat-button (click)="onCancelClick()">Cancel</button>
+      <button mat-button (click)="onSubmitClick()">Submit</button>
+    </div>
+  </mat-dialog-content>
+</div>
