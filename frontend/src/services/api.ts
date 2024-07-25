@@ -1,37 +1,36 @@
-import { HttpHeaders } from "@angular/common/http";
+import { HttpHeaders } from '@angular/common/http';
 
-
-const ROOT = "https://localhost:8080/";
+const ROOT = 'http://localhost:8080/';
 
 const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    }),
-    verifySSL: false // <--- Add this line
-  };
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+  verifySSL: false, // <--- Add this line
+};
 
-    //function to parse the returning information as json
-    const parseJSON = (response: any) => {
-        if(response.status === 204 || response.status === 205) {
-            return null;
-        }
-        return response.json();
-    }
+//function to parse the returning information as json
+const parseJSON = (response: any) => {
+  if (response.status === 204 || response.status === 205) {
+    return null;
+  }
+  return response.json();
+};
 
-    /*
+/*
         A function to check the status of the fetch.
         If the response is not 200, throw an error
     */
-    const checkStatus = (response: any) => {
-        if(response.status >= 200 && response.status < 300) {
-            return response;
-        }
-        const error: any = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
+const checkStatus = (response: any) => {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const error: any = new Error(response.statusText);
+  error.response = response;
+  throw error;
+};
 
-    /*
+/*
         A Function to get information from DB
 
         @param String endpoint  A endpoint to call (ex: user)
@@ -39,17 +38,19 @@ const httpOptions = {
         
         @return {object} The response Data
     */
-    export const get = (endpoint: String, options: String[]) => {
-        let url = ROOT + endpoint;
-        options.forEach(element => {
-            url = url + "/" + element;
-        });
-        return fetch(url, {
-            method: "GET"
-        }).then(checkStatus).then(parseJSON);
-    }
-    
-    /*
+export const get = (endpoint: String, options: String[]) => {
+  let url = ROOT + endpoint;
+  options.forEach((element) => {
+    url = url + '/' + element;
+  });
+  return fetch(url, {
+    method: 'GET',
+  })
+    .then(checkStatus)
+    .then(parseJSON);
+};
+
+/*
         A Function to post information to the DB
 
         @param String endpoint  A endpoint to call (ex: user)
@@ -58,17 +59,18 @@ const httpOptions = {
 
         @return {object} The response Data
     */
-    export const post = (endpoint: String, options: String[], optionsBody: any) => {
-        let url = ROOT + endpoint;
-        options.forEach(element => {
-            url = url + "/" + element;
-        })
-        return fetch(url, {
-            method: "POST",
-            body: JSON.stringify(optionsBody),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(checkStatus).then(parseJSON);
-    }
-
+export const post = (endpoint: String, options: String[], optionsBody: any) => {
+  let url = ROOT + endpoint;
+  options.forEach((element) => {
+    url = url + '/' + element;
+  });
+  return fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(optionsBody),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(checkStatus)
+    .then(parseJSON);
+};
