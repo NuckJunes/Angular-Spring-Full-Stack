@@ -71,13 +71,13 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    padding-top: 30px;
 }
 
 .author {
     margin: 0px;
     font-size: 24px;
     padding-left: 80px;
+    opacity: .8;
 }
 
 .date {
@@ -87,11 +87,19 @@
     padding-right: 80px;
 }
 
+.announcement-title {
+    font-size: 30px;
+    font-weight: 600;
+    color: #f3c896;
+    text-align: center;
+    margin: 20px;
+}
+
 .announcement-text {
     margin: 0px;
     font-size: 18px;
     font-family: 'Inter';
-    padding: 30px 80px;
+    padding: 20px 80px;
     text-align: left;
 }
 

@@ -8,9 +8,10 @@
   <div class="break"></div>
   <div class="announcements-container">
     <div *ngFor="let announcement of paginatedAnnouncements" class="announcement-container">
+      <p class="announcement-title">{{announcement.title}}</p>
       <div class="announcement-header">
         <p *ngIf="announcement.author" class="author">
-          {{announcement.author.profile.firstName}}, {{announcement.title}}
+          {{announcement.author.profile.firstName}} {{announcement.author.profile.lastName}}
         </p>
         <p class="date">{{announcement.date}}</p>
       </div>
