@@ -23,10 +23,9 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 35vw;
     height: 70vh;
+    max-width: 600px;
     position: relative;
-    
   }
   
   
