@@ -16,13 +16,13 @@
   />
   <h2>Add Members</h2>
   <!-- Drop Down of Users -->
-  <mat-select (valueChange)="addUser()" [(value)]="currentUser">
-    <mat-option *ngFor="let user of users"></mat-option>
-  </mat-select>
-  <div *ngFor="let user of teamToAdd.teammates">
-    <p>{{ user.profile.firstName }} {{ user.profile.lastName }}</p>
-    <button (click)="removeUser(user.id)">X</button>
-  </div>
+    <select [(ngModel)]="currentUser" (change)="addUser($event)">
+      <option *ngFor="let user of users" [ngValue]="user">{{ user.profile.firstName }} {{ user.profile.lastName }}</option>
+    </select>
+    <div *ngFor="let user of teamToAdd.teammates">
+      <p>{{ user.profile.firstName }} {{ user.profile.lastName }} </p>
+      <button (click)="removeUser(user.id)">X</button>
+    </div>  
   <div>
     <button mat-button (click)="onCancelClick()">Cancel</button>
     <button mat-button (click)="onSubmitClick()">Submit</button>
