@@ -16,6 +16,7 @@ import BasicUserDTO from '../models/BasicUserDTO';
 export class AnnouncementsComponent implements OnInit {
 
   user: FullUserDTO | undefined = undefined;
+  companyId: number = -1;
   announcements: AnnouncementDTO[] = [];
   announcementPopup: boolean = false;
 
@@ -26,16 +27,19 @@ export class AnnouncementsComponent implements OnInit {
       this.user = user;
       console.log('State User: ', this.user);
     })
-    this.fetchAnnouncements();
+    this.userService.getCompanyID().subscribe(companyId => {
+      if (this.user && this.companyId !== undefined) {
+        this.companyId = companyId;
+        this.fetchAnnouncements(companyId);
+      };
+    })
   }
 
-  async fetchAnnouncements() {
+  async fetchAnnouncements(id: number) {
     try {
-      const response = await fetch('http://localhost:8080/company/1/announcements');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      const response = await fetch(`http://localhost:8080/company/${id}/announcements`);
       const data: AnnouncementDTO[] = await response.json();
+      console.log(data);
       this.announcements = data.map(announcement => ({
         ...announcement,
         date: new Date(announcement.date).toLocaleDateString()
@@ -64,13 +68,10 @@ export class AnnouncementsComponent implements OnInit {
       body: JSON.stringify(newAnnouncement)
     }
     try {
-      const response = await fetch('http://localhost:8080/company/1/announcement', options);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      const response = await fetch(`http://localhost:8080/company/${this.companyId}/announcement`, options);
       const data: AnnouncementDTO[] = await response.json();
       this.announcementPopup = false;
-      this.fetchAnnouncements();
+      this.fetchAnnouncements(this.companyId);
     } catch (error) {
       console.error('Error fetching announcements:', error);
     }

@@ -13,9 +13,7 @@ import FullUserDTO from '../models/FullUserDTO';
   styleUrl: './navmenu.component.css'
 })
 export class NavmenuComponent {
-  isAdmin = true;
   toggleMenu = false;
-  profile: any;
   companyName: any;
   scrolled = false;
   user: FullUserDTO | undefined = undefined;
