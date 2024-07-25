@@ -8,7 +8,7 @@
     <div class="announcements-container">
         <div *ngFor="let announcement of announcements" class="announcement-container">
             <div class="announcement-header">
-                <p class="author">{{announcement.author.profile.firstName}}, {{announcement.title}}</p>
+                <p *ngIf="announcement.author" class="author">{{announcement.author.profile.firstName}}, {{announcement.title}}</p>
                 <p class="date">{{announcement.date}}</p>
             </div>
             <p class="announcement-text">{{announcement.message}}</p>
