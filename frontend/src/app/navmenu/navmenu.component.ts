@@ -2,6 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { GeneralService } from '../../services/general.service';
 import { Router, RouterModule } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
+import { userInfo } from '../../services/userInfo';
+import FullUserDTO from '../models/FullUserDTO';
 
 @Component({
   selector: 'app-navmenu',
@@ -16,15 +18,19 @@ export class NavmenuComponent {
   profile: any;
   companyName: any;
   scrolled = false;
+  user: FullUserDTO | undefined = undefined;
 
-  constructor(private generalService: GeneralService, private router: Router) {}
+  constructor(private generalService: GeneralService, private router: Router, private userInfo: userInfo) {
+    userInfo.getFullUser().subscribe(user => {
+      this.user = user;
+    });
+    userInfo.getCompanyName().subscribe(company => {
+      this.companyName = company;
+    })
+  }
 
   ngOnInit() {
-    this.isAdmin = JSON.parse(localStorage.getItem('user') as string).admin;
-    const user = JSON.parse(localStorage.getItem('user')!);
-    if (user) this.profile = user.profile;
-    const companyName = String(localStorage.getItem('companyName')!);
-    if (companyName) this.companyName = companyName;
+
   }
 
   @HostListener('window:scroll', [])

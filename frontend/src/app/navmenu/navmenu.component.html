@@ -7,11 +7,11 @@
         alt="company logo"
       />
     </div>
-    <div id="adtext">
-      {{ isAdmin ? "ADMIN:" : "" }} {{ profile.firstName }} {{ profile.lastName }}
+    <div id="adtext" *ngIf="user">
+      {{ isAdmin ? "ADMIN:" : "" }} {{ user.profile.firstName }} {{ user.profile.lastName }}
       
     </div>
-    <div class="companyName">{{companyName}}</div>
+    <div class="companyName" *ngIf="companyName">{{companyName}}</div>
     <div class="links">
       <a class="link" routerLink="/">Home</a>
       <a *ngIf="isAdmin" class="link" routerLink="/select-company">Company</a>

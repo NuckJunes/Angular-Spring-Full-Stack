@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -34,7 +35,7 @@ public class CompanyController {
     }
     
     @GetMapping("/{id}/announcements")
-    public Set<AnnouncementDto> getAnnouncements(@PathVariable Long id){
+    public List<AnnouncementDto> getAnnouncements(@PathVariable Long id){
         return companyService.getAnnouncements(id);
     }
     
