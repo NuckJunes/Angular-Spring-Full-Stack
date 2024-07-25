@@ -13,7 +13,7 @@
           # of Projects: {{ loadProjects(team.id) }}
         </p>
       </div>
-      <div>
+      <div class="team-contents">
         <h3 class="member-header">Members</h3>
         <div class="team-members-container">
           <div class="team-member" *ngFor="let member of team.teammates">
@@ -25,7 +25,7 @@
   </ng-container>
   <ng-template #loading>Loading teams...</ng-template>
 
-  <div class="team-container" (click)="addTeam()">
-    <p>Add team</p>
+  <div class="team-container" class="add-team-container" (click)="addTeam()">
+    <div class="plus-button" role="img" aria-label="Add Team"></div>
   </div>
 </div>

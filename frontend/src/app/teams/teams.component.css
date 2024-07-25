@@ -3,11 +3,6 @@ h1 {
   color: #1ba098;
 }
 
-h1 {
-  text-align: center;
-  color: #1ba098;
-}
-
 .teams-container {
   display: flex;
   flex-wrap: wrap;
@@ -18,22 +13,30 @@ h1 {
   padding: 0 20px;
 }
 
-.team-container {
+.team-container,
+.add-team-container {
   color: white;
   width: calc(33.33% - 20px);
   background-color: #0b2d45;
   border-radius: 25px;
-  padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1;
+  position: relative;
+}
+
+.team-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .team-header {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 2px solid #deb992;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .team-name {
@@ -48,7 +51,12 @@ h1 {
   text-align: right;
 }
 
+.team-contents {
+  margin-top: 10px;
+}
+
 .member-header {
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -62,20 +70,50 @@ h1 {
 .team-member {
   background-color: #1ba098;
   border-radius: 10px;
-  padding: 5px 10px;
+  padding: 15px 20px;
   width: calc(50% - 5px);
   box-sizing: border-box;
   margin: 0;
+  display: flex; /* Enable flexbox layout */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+.team-member p {
+  margin: 0; /* Remove default margin */
+  text-align: center; /* Ensure text is centered within the element */
+}
+
+.add-team-container {
+  border: 2px solid #deb992;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-team-container:hover {
+  cursor: pointer;
+}
+
+.plus-button {
+  width: 90px;
+  height: 90px;
+  background-image: url("../../assets/plusbutton.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 992px) {
-  .team-container {
+  .team-container,
+  .add-team-container {
     width: calc(50% - 20px);
   }
 }
 
 @media (max-width: 768px) {
-  .team-container {
+  .team-container,
+  .add-team-container {
     width: 100%;
+    height: auto;
   }
 }
