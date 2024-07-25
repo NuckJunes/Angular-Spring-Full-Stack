@@ -1,0 +1,48 @@
+nav {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid beige;
+  }
+  
+  .links {
+    margin-left: auto; /* Add this line to push the links to the right */
+  }
+  
+  .link {
+    font-style: normal;
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+    color: rgba(27, 160, 152, 0.8);
+    margin: 0 20px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  #adtext {
+    color: red;
+    position: absolute;
+    left: 90px;
+    top: 15px;
+  }
+  
+  img {
+    width: 50px;
+  }
+  
+  .navbar {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+
+ 
+  .companyName {
+    color: grey;
+    text-align: center;
+    font-weight: bold; /* Add this line to make it bold */
+    flex: 1; /* Add this line to make it take up the available space */
+    font-size: 30px;
+    
+  }

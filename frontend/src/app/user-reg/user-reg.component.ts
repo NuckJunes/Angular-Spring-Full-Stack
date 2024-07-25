@@ -10,11 +10,12 @@ import { post, get } from '../../services/api';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
 import { userInfo } from '../../services/userInfo';
 import { HttpClient } from '@angular/common/http';
+import { NavmenuComponent } from "../navmenu/navmenu.component";
 
 @Component({
   selector: 'app-user-reg',
   standalone: true,
-  imports: [NgFor, MatInputModule, MatButtonModule, NgClass, UserRegFormComponent,NgIf],
+  imports: [NgFor, MatInputModule, MatButtonModule, NgClass, UserRegFormComponent, NgIf, NavmenuComponent],
   templateUrl: './user-reg.component.html',
   styleUrl: './user-reg.component.css'
 })
