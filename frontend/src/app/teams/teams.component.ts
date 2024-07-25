@@ -106,7 +106,9 @@ export class TeamsComponent {
       //if(response) {
       //  teams = response;
       //}
-      this.postTeam(result);
+      if (result) {
+        this.postTeam(result);
+      }
     });
   }
 
