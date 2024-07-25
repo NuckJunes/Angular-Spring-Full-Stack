@@ -19,6 +19,7 @@ import { MatFormField, MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { TeamsAddFormComponent } from './teams-add-form/teams-add-form.component';
 import { NavmenuComponent } from '../navmenu/navmenu.component';
+import { response } from 'express';
 
 @Component({
   selector: 'app-teams',
@@ -32,11 +33,12 @@ export class TeamsComponent {
   teams: TeamDTO[] = [];
   dataLoaded = false;
   allProjects: ProjectDTO[] = [];
+  teamId: string = '';
 
   teamToAdd: TeamDTO = {
     id: 0,
-    name: '',
-    description: '',
+    name: 'Test',
+    description: 'asdfadsf',
     teammates: [],
   };
 
@@ -48,6 +50,7 @@ export class TeamsComponent {
 
   ngOnInit() {
     this.userInfo.getCompanyID().subscribe((value) => (this.id = value.toString()));
+    this.userInfo.getTeamID().subscribe((value) => (this.teamId = value.toString()));
     this.getTeams();
     this.getCompanyProjects();
   }
@@ -96,12 +99,28 @@ export class TeamsComponent {
     const dialogRef = this.dialog.open(TeamsAddFormComponent, {
       data: this.teamToAdd,
     });
+
     dialogRef.afterClosed().subscribe((result) => {
       //here is were we post the new user team
       //let response =  post("company", [id, "teams"], this.teamToAdd)
       //if(response) {
       //  teams = response;
       //}
+      this.postTeam(result);
     });
+  }
+
+  async postTeam(result: TeamDTO) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(result)
+    }
+
+    const response = await fetch(`http://localhost:8080/company/${this.id}/teams`, options)
+    console.log(response.json());
+    this.getTeams();
   }
 }
