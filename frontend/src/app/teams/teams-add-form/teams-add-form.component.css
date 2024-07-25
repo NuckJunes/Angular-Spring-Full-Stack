@@ -18,6 +18,10 @@
   z-index: 1001 !important;
 }
 
+.mat-dialog-title {
+  color: #deb992;
+}
+
 mat-dialog-content {
   background-color: #0b2d45;
   width: 100%;
@@ -115,4 +119,30 @@ button:hover {
 
 .select-members-dropdown:hover {
   cursor: pointer;
+}
+
+.members-to-add {
+  color: #deb992;
+  margin-right: 10px; /* Add margin to separate text from the button */
+}
+
+.remove-button {
+  background-color: #ed474a;
+  border: none; /* Remove border */
+  border-radius: 4px; /* Optional: Add border radius */
+  color: white; /* Ensure the text color is white */
+  padding: 4px 8px; /* Adjust padding as needed */
+  cursor: pointer; /* Ensure the button looks clickable */
+}
+
+.remove-button:hover {
+  background-color: #e60000;
+}
+
+.remove-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
 }

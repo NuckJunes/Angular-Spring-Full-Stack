@@ -1,5 +1,5 @@
 <div class="form-container">
-  <h2 mat-dialog-title class="mat-dialog-title"></h2>
+  <h2 mat-dialog-title class="mat-dialog-title">Add Team</h2>
   <mat-dialog-content>
     <div class="input-group">
       <label for="team-name">Team Name</label>
@@ -31,9 +31,11 @@
         {{ user.profile.firstName }} {{ user.profile.lastName }}
       </option>
     </select>
-    <div *ngFor="let user of teamToAdd.teammates">
-      <p>{{ user.profile.firstName }} {{ user.profile.lastName }}</p>
-      <button (click)="removeUser(user.id)">X</button>
+    <div class="remove-container" *ngFor="let user of teamToAdd.teammates">
+      <p class="members-to-add">
+        {{ user.profile.firstName }} {{ user.profile.lastName }}
+      </p>
+      <button class="remove-button" (click)="removeUser(user.id)">X</button>
     </div>
     <div class="action-buttons">
       <button mat-button (click)="onCancelClick()">Cancel</button>
