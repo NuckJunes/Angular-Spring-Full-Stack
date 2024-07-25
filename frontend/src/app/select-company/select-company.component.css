@@ -28,6 +28,10 @@
     appearance: none;
 }
 
+.company-selections:hover {
+    cursor: pointer;
+}
+
 .option {
     color: black;
     padding: 5px;

@@ -8,15 +8,15 @@
       />
     </div>
     <div id="adtext" *ngIf="user">
-      {{ isAdmin ? "ADMIN:" : "" }} {{ user.profile.firstName }} {{ user.profile.lastName }}
+      {{ user.admin ? "ADMIN:" : "" }} {{ user.profile.firstName }} {{ user.profile.lastName }}
       
     </div>
     <div class="companyName" *ngIf="companyName">{{companyName}}</div>
     <div class="links">
       <a class="link" routerLink="/">Home</a>
-      <a *ngIf="isAdmin" class="link" routerLink="/select-company">Company</a>
+      <a *ngIf="user && user.admin" class="link" routerLink="/select-company">Company</a>
       <a class="link" routerLink="/teams">Teams</a>
-      <a *ngIf="isAdmin" class="link" routerLink="/users">Users</a>
+      <a *ngIf="user && user.admin" class="link" routerLink="/users">Users</a>
       <a (click)="logout()"><h1 class="link">Logout</h1></a>
     </div>
   </nav>

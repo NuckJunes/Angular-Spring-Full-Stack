@@ -25,7 +25,7 @@ export class ProjectsComponent {
   team: any = undefined;
   isAdmin = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private userInfo: userInfo) {
     const input = this.router.getCurrentNavigation();
     const receivedTeamId = input?.extras?.state?.['teamId'];
     if (receivedTeamId) this.teamId = receivedTeamId;
@@ -33,12 +33,18 @@ export class ProjectsComponent {
     if (receivedTeamName) this.teamName = receivedTeamName;
     const receivedTeam = input?.extras?.state?.['team'];
     if (receivedTeam) this.team = receivedTeam;
+    userInfo.getTeamID().subscribe(teamId => {
+      this.teamId = teamId;
+    })
+    userInfo.getTeamName().subscribe(teamName => {
+      this.teamName = teamName;
+    })
   }
 
   ngOnInit() {
     const user = JSON.parse(localStorage.getItem('user') as string);
-    if (this.teamId === 0) this.teamId = user.teams[0].id;
-    if (this.teamName === '') this.teamName = user.teams[0].name;
+    //if (this.teamId === 0) this.teamId = user.teams[0].id;
+    //if (this.teamName === '') this.teamName = user.teams[0].name;
     if (!this.team) this.team = user.teams[0];
     this.isAdmin = user.admin;
 
@@ -54,6 +60,8 @@ export class ProjectsComponent {
       },
       error: (e) => console.error(e),
     });
+
+    console.log(url);
   }
 
   updateProjectList() {

@@ -1,30 +1,49 @@
 <app-navmenu></app-navmenu>
+
 <div class="page-container">
-    <div class="announcements-header">
-        <h1 class="page-title">Announcements</h1>
-        <button *ngIf="user && user.admin" (click)="newAnnouncementPopup()" class="new-post-button">New</button>
+  <div class="announcements-header">
+    <h1 class="page-title">Announcements</h1>
+    <button *ngIf="user && user.admin" (click)="newAnnouncementPopup()" class="new-post-button">New</button>
+  </div>
+  <div class="break"></div>
+  <div class="announcements-container">
+    <div *ngFor="let announcement of paginatedAnnouncements" class="announcement-container">
+      <div class="announcement-header">
+        <p *ngIf="announcement.author" class="author">
+          {{announcement.author.profile.firstName}}, {{announcement.title}}
+        </p>
+        <p class="date">{{announcement.date}}</p>
+      </div>
+      <p class="announcement-text">{{announcement.message}}</p>
     </div>
-    <div class="break"></div>
-    <div class="announcements-container">
-        <div *ngFor="let announcement of announcements" class="announcement-container">
-            <div class="announcement-header">
-                <p *ngIf="announcement.author" class="author">{{announcement.author.profile.firstName}}, {{announcement.title}}</p>
-                <p class="date">{{announcement.date}}</p>
-            </div>
-            <p class="announcement-text">{{announcement.message}}</p>
+  </div>
+
+  <div *ngIf="announcementPopup && user" class="create-announcement-container">
+    <form *ngIf="announcementForm" [formGroup]="announcementForm" (ngSubmit)="submitAnnouncement()" class="popup-container">
+      <div class="popup-close-button" (click)="newAnnouncementPopup()">x</div>
+      <div class="popup-name">{{user.profile.firstName}}</div>
+      <div class="popup-inner-container">
+        <div>Title</div>
+        <input formControlName="title" class="popup-input" />
+        <div *ngIf="announcementForm.get('title')?.invalid && announcementForm.get('title')?.touched" class="error-message">
+          Title is required.
         </div>
-    </div>
-    <div *ngIf="announcementPopup && user" class="create-announcement-container">
-        <div class="popup-container">
-            <div class="popup-close-button" (click)="newAnnouncementPopup()" >x</div>
-            <div class="popup-name">{{user.profile.firstName}}</div>
-            <div class="popup-inner-container">
-                <div>Title</div>
-                <input #title class="popup-input" />
-                <div>Message</div>
-                <input #message class="popup-input" />
-            </div>
-            <button class="popup-submit-button" (click)="submitAnnouncement(title.value, message.value)">Submit</button>
+        <div>Message</div>
+        <input formControlName="message" class="popup-input" />
+        <div *ngIf="announcementForm.get('message')?.invalid && announcementForm.get('message')?.touched" class="error-message">
+          Message is required.
         </div>
+      </div>
+      <button class="popup-submit-button" type="submit" [disabled]="announcementForm.invalid">Submit</button>
+    </form>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div *ngIf="totalPages > 1" class="pagination-controls">
+    <div class="pagination-buttons">
+        <button (click)="goToPreviousPage()" [disabled]="currentPage === 0">Previous</button>
+        <button (click)="goToNextPage()" [disabled]="currentPage >= totalPages - 1">Next</button>
     </div>
+    <span>{{currentPage + 1}} of {{totalPages}}</span>
+  </div>
 </div>
