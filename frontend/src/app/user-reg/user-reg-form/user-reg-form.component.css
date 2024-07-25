@@ -134,3 +134,25 @@
     color: red;
   }
 
+  @media screen and (max-width: 790px) {
+    .add-user-container {
+      width: 90%;
+    }
+
+    .add-user-form {
+      width: 100%;
+    }
+
+    .name-container,
+    .email-phone-container,
+    .pass-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .name-container input {
+      width: 80%;
+    }
+  }
+
