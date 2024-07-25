@@ -51,12 +51,11 @@ public class CompanyServiceImpl implements CompanyService {
     }
     
     @Override
-    public Set<AnnouncementDto> getAnnouncements(Long id) {
+    public List<AnnouncementDto> getAnnouncements(Long id) {
         Company company=validateService.findCompany(id);
         List<Announcements> sortedList=new ArrayList<>(company.getAnnouncements());
         sortedList.sort(Comparator.comparing(Announcements::getDate).reversed());
-        Set<Announcements> allAnnounces=new HashSet<>(sortedList);
-        return announceMapper.entitiesToDtos(allAnnounces);
+        return announceMapper.entitiesToDtos(sortedList);
     }
     
     @Override    
