@@ -1,9 +1,24 @@
-<h1>Projects for</h1>
-<div>
-    <button>add project</button>
-    <div *ngFor="let project of projects">
-        <h3>{{ project.name }}</h3>
-        <p>{{ project.description }}</p>
-        <button>edit</button>
+<app-navmenu></app-navmenu>
+<app-create-project
+*ngIf="showOverlay"
+(updateOverlay)="toggleOverlay()"
+[teamId]="teamId"
+[team]="team"
+></app-create-project>
+<div id="projects-container">
+    <h1 class="title" *ngIf="projects.length > 0">
+      Projects for {{ teamName }}
+    </h1>
+    <div>
+      <button *ngIf="isAdmin" class="new-btn" routerLink="/teams">Go Back</button>
+      <button *ngIf="!isAdmin" class="new-btn" routerLink="/">Go Back</button>
+      <button class="new-btn" (click)="toggleOverlay()">New</button>
     </div>
-</div>
+    <h1 class="title" *ngIf="projects.length === 0">
+      {{ teamName }} has no active projects
+    </h1>
+
+    <div class="projects" *ngFor="let project of projects">
+      <app-project-card [project]="project"></app-project-card>
+    </div>
+  </div>

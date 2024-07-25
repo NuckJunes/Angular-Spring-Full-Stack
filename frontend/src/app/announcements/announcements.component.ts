@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import FullUserDTO from '../models/FullUserDTO';
 import AnnouncementDTO from '../models/AnnouncementDTO';
 import { userInfo } from '../../services/userInfo';
+import { NavmenuComponent } from '../navmenu/navmenu.component';
 
 @Component({
   selector: 'app-announcements',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavmenuComponent],
   templateUrl: './announcements.component.html',
   styleUrls: ['./announcements.component.css']
 })

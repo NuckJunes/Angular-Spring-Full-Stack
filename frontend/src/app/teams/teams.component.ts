@@ -9,11 +9,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { TeamsAddFormComponent } from './teams-add-form/teams-add-form.component';
+import { NavmenuComponent } from "../navmenu/navmenu.component";
 
 @Component({
   selector: 'app-teams',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NavmenuComponent],
   templateUrl: './teams.component.html',
   styleUrl: './teams.component.css'
 })

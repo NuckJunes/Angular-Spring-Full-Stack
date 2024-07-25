@@ -5,4 +5,5 @@ export default interface ProjectDTO {
     description: string,
     active: boolean,
     team: TeamDTO
+    date:string
 };
