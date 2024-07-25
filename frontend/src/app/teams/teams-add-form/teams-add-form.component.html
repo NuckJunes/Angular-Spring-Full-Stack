@@ -10,7 +10,7 @@
         <mat-option *ngFor="let user of users"></mat-option>
      </mat-select>
     <div *ngFor="let user of teamToAdd.users">
-        <p>{{ user.profile.firstname }} {{ user.profile.lastname }}</p>
+        <p>{{ user.profile.firstName }} {{ user.profile.lastName }}</p>
         <button (click)="removeUser(user.id)">X</button>
     </div>
     <div>

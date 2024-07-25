@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NavmenuComponent } from "../navmenu/navmenu.component";
 import FullUserDTO from '../models/FullUserDTO';
 import AnnouncementDTO from '../models/AnnouncementDTO';
 import { userInfo } from '../../services/userInfo';

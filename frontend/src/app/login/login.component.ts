@@ -27,7 +27,7 @@ export class LoginComponent {
       firstName: '',
       lastName: '',
       email: '',
-      phone: '',
+      phoneNumber: '',
     },
     admin: false,
   };

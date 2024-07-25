@@ -31,10 +31,10 @@ export class TeamsComponent {
         profile: {
           firstName: "Dwayne",
           lastName: "Johnson",
-          phone: "000-000-0000",
+          phoneNumber: "000-000-0000",
           email: "mail@mail.com"
         },
-        isAdmin: true,
+        admin: true,
         active: true,
         status: "The Rock",
       }

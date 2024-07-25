@@ -33,12 +33,12 @@ export class TeamsAddFormComponent {
   currentUser: FullUserDTO = {
     id: 0,
     profile: {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       email: "",
-      phone: ""
+      phoneNumber: ""
     },
-    isAdmin: false,
+    admin: false,
     active: false,
     status: "",
     companies: [],
@@ -69,7 +69,7 @@ export class TeamsAddFormComponent {
     this.teamToAdd.users.push({
       id: this.currentUser.id,
       profile: this.currentUser.profile,
-      isAdmin: this.currentUser.isAdmin,
+      admin: this.currentUser.admin,
       active: this.currentUser.active,
       status: this.currentUser.status
     });

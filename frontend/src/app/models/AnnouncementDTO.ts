@@ -4,10 +4,5 @@ export default interface AnnouncementDTO {
     date: string,
     title: string,
     message: string,
-    author: {
-        profile: {
-            firstName: string,
-            lastName: string
-        }
-    }
+    author: BasicUserDTO
 };
