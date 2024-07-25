@@ -49,8 +49,12 @@ export class TeamsComponent {
   ) {}
 
   ngOnInit() {
-    this.userInfo.getCompanyID().subscribe((value) => (this.id = value.toString()));
-    this.userInfo.getTeamID().subscribe((value) => (this.teamId = value.toString()));
+    this.userInfo
+      .getCompanyID()
+      .subscribe((value) => (this.id = value.toString()));
+    this.userInfo
+      .getTeamID()
+      .subscribe((value) => (this.teamId = value.toString()));
     this.getTeams();
     this.getCompanyProjects();
   }
@@ -116,12 +120,15 @@ export class TeamsComponent {
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(result)
-    }
+      body: JSON.stringify(result),
+    };
 
-    const response = await fetch(`http://localhost:8080/company/${this.id}/teams`, options)
+    const response = await fetch(
+      `http://localhost:8080/company/${this.id}/teams`,
+      options
+    );
     console.log(response.json());
     this.getTeams();
   }
