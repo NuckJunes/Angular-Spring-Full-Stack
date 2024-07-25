@@ -1,17 +1,22 @@
 nav {
-    border-radius: 10px;
     display: flex;
     flex-direction: row;
-    border: 1px solid beige;
+    border-bottom: 1px solid #DEB992;
+    position: relative;
+    margin-bottom: 60px;
+    justify-content: center;
   }
   
   .links {
     margin-left: auto; /* Add this line to push the links to the right */
+    display: flex;
+    align-items: center;
   }
   
   .link {
     font-style: normal;
-    font-weight: 100;
+    font-family: 'Mulish';
+    font-weight: 400;
     font-size: 30px;
     text-align: center;
     color: rgba(27, 160, 152, 0.8);
@@ -22,9 +27,11 @@ nav {
   
   #adtext {
     color: red;
+    font-family: 'Mulish';
+    font-weight: 400;
     position: absolute;
     left: 90px;
-    top: 15px;
+    top: 28px;
   }
   
   img {
@@ -44,5 +51,85 @@ nav {
     font-weight: bold; /* Add this line to make it bold */
     flex: 1; /* Add this line to make it take up the available space */
     font-size: 30px;
-    
+    position: absolute;
+    bottom: -40px;
+    text-align: center;
+  }
+
+  .mobile-menu, .mobile-menu-button {
+    display: none;
+  }
+
+  @media screen and (max-width: 980px) {
+    #adtext {
+      display: flex;
+      top: 10px;
+      left: 120px;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      border-radius: 50%;
+      background-color: #0D3A59;
+      width: 80px;
+      height: 80px;
+    }
+
+    img {
+      width: 80px;
+      height: 80px;
+    }
+
+    .links {
+      display: none;
+    }
+
+    .mobile-menu {
+      z-index: 5;
+      display: flex;
+      position: absolute;
+      width: 100%;
+      top: 75px;
+      right: 0px;
+      flex: 1;
+      align-items: center;
+      flex-direction: column;
+      text-align: right;
+      gap: 2px;
+      background-color: #0D3A59;
+    }
+
+    .mobile-link {
+      text-align: center;
+      width: 75%;
+      margin: 0px;
+      font-style: normal;
+      font-family: 'Mulish';
+      font-weight: 400;
+      font-size: 30px;
+      padding: 5px 20px;
+      color: #1Ba098;
+      display: inline-block;
+      text-decoration: none;
+      border-bottom: 2px solid #1Ba098;
+    }
+
+    .mobile-link:last-child {
+      border: none;
+    }
+
+    .mobile-link:hover {
+      background-color: rgba(28, 125, 150, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      padding: 0px 10px;
+    }
+
+    .mobile-menu-button {
+      display: block;
+    }
   }

@@ -1,22 +1,35 @@
 <nav class="navbar">
-    <div>
+    <div class="navbar-container">
       <img
         (click)="goHome()"
         class="logo"
         src="../../../assets/app-icon.png"
         alt="company logo"
       />
+      <img 
+        (click)="toggleMobileMenu()"
+        class="mobile-menu-button"
+        src="../../assets/mobile-menu.svg"
+        alt="mobile menu"
+      />
     </div>
     <div id="adtext" *ngIf="user">
       {{ user.admin ? "ADMIN:" : "" }} {{ user.profile.firstName }} {{ user.profile.lastName }}
       
     </div>
-    <div class="companyName" *ngIf="companyName">{{companyName}}</div>
+    <div class="companyName" *ngIf="companyName && user">{{companyName}}</div>
     <div class="links">
       <a class="link" routerLink="/announcements">Home</a>
       <a *ngIf="user && user.admin" class="link" routerLink="/select-company">Company</a>
       <a class="link" routerLink="/teams">Teams</a>
       <a *ngIf="user && user.admin" class="link" routerLink="/users">Users</a>
       <a (click)="logout()"><h1 class="link">Logout</h1></a>
+    </div>
+    <div *ngIf="toggleMenu" class="mobile-menu">
+      <a class="mobile-link" routerLink="/announcements">Home</a>
+      <a *ngIf="user && user.admin" class="mobile-link" routerLink="/select-company">Company</a>
+      <a class="mobile-link" routerLink="/teams">Teams</a>
+      <a *ngIf="user && user.admin" class="mobile-link" routerLink="/users">Users</a>
+      <a (click)="logout()"><h1 class="mobile-link">Logout</h1></a>
     </div>
   </nav>

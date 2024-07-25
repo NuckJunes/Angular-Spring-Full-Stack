@@ -18,6 +18,7 @@ export class GeneralService {
   }
   logout(): void {
     localStorage.removeItem('user');
+
     this.router.navigate(['/']);
   }
 

@@ -43,4 +43,8 @@ export class NavmenuComponent {
   goHome() {
     this.router.navigateByUrl('/announcements');
   }
+
+  toggleMobileMenu() {
+    this.toggleMenu = !this.toggleMenu;
+  }
 }
