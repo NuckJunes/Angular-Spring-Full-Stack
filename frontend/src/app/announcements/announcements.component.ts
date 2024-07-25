@@ -24,9 +24,9 @@ export class AnnouncementsComponent implements OnInit {
   ngOnInit() {
     this.userService.getFullUser().subscribe(user => {
       this.user = user;
+      console.log('State User: ', this.user);
     })
     this.fetchAnnouncements();
-    console.log(this.user);
   }
 
   async fetchAnnouncements() {
@@ -40,7 +40,6 @@ export class AnnouncementsComponent implements OnInit {
         ...announcement,
         date: new Date(announcement.date).toLocaleDateString()
       }));
-      console.log(data);
     } catch (error) {
       console.error('Error fetching announcements:', error);
     }
@@ -69,9 +68,7 @@ export class AnnouncementsComponent implements OnInit {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      console.log('Announcement posted');
       const data: AnnouncementDTO[] = await response.json();
-      console.log(data);
       this.announcementPopup = false;
       this.fetchAnnouncements();
     } catch (error) {
