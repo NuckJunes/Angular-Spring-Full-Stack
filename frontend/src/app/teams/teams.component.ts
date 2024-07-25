@@ -1,90 +1,94 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { userInfo } from '../../services/userInfo';
 import { get } from '../../services/api';
 import TeamDTO from '../models/TeamDTO';
+import ProjectDTO from '../models/ProjectDTO';
 import { Router } from '@angular/router';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { TeamsAddFormComponent } from './teams-add-form/teams-add-form.component';
-import { NavmenuComponent } from "../navmenu/navmenu.component";
+import { NavmenuComponent } from '../navmenu/navmenu.component';
 
 @Component({
   selector: 'app-teams',
   standalone: true,
-  imports: [NgFor, NavmenuComponent],
+  imports: [NgFor, NgIf, NavmenuComponent],
   templateUrl: './teams.component.html',
-  styleUrl: './teams.component.css'
+  styleUrls: ['./teams.component.css'],
 })
 export class TeamsComponent {
-
-  id: string = "";
-  teams: TeamDTO[] = [ 
-    {
-      id: 0,
-      name: "Team 1",
-      description: "A new team 1.",
-      users: [ 
-      {
-        id: 0,
-        profile: {
-          firstName: "Dwayne",
-          lastName: "Johnson",
-          phoneNumber: "000-000-0000",
-          email: "mail@mail.com"
-        },
-        admin: true,
-        active: true,
-        status: "The Rock",
-      }
-      ]
-    },
-    {
-      id: 1,
-      name: "Team 2",
-      description: "A new team 2.",
-      users: []
-    },
-    {
-      id: 2,
-      name: "Team 3",
-      description: "A new team 3.",
-      users: []
-    }
-  ];
+  id: string = '';
+  teams: TeamDTO[] = [];
+  dataLoaded = false;
+  allProjects: ProjectDTO[] = [];
 
   teamToAdd: TeamDTO = {
     id: 0,
-    name: "",
-    description: "",
-    users: []
-  }
+    name: '',
+    description: '',
+    teammates: [],
+  };
 
-  constructor(private userInfo: userInfo, private router: Router, public dialog: MatDialog) {}
+  constructor(
+    private userInfo: userInfo,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
-    this.userInfo.getCompanyID().subscribe((value) => (this.id = value.toString()));
-    //this.getTeams();
+    this.userInfo
+      .getCompanyID()
+      .subscribe((value) => (this.id = value.toString()));
+
+    /* DELETE this.id = '1' AFTER WE'VE FULLY IMPLEMENTED THE SELECT COMPANY PAGE */
+    this.id = '1'; //just used for testing the teams page with backend data
+    /* --------------------------------------------------------------------------*/
+    this.getTeams();
+    this.getCompanyProjects();
   }
 
   async getTeams() {
-    let response = await get("company", [this.id, "teams"]);
-    if(response) {
-      this.teams = response;
-      // this.teams.forEach(element => {
-      //   this.loadProjects(element.id);
-      // });
+    try {
+      let response = await get('company', [this.id, 'teams']);
+      if (response) {
+        this.teams = response;
+        this.dataLoaded = true;
+      }
+    } catch (error) {
+      console.error('Error fetching teams:', error);
+    }
+  }
+
+  async getCompanyProjects() {
+    try {
+      let response = await get('company', [this.id, 'projects']);
+      if (response) {
+        this.allProjects = response;
+      }
+    } catch (error) {
+      console.error('Error fetching team projects:', error);
     }
   }
 
   loadProjects(teamId: number) {
-    // let response = await get("company", [this.id, "teams", teamId.toString(), "projects"]);
-    // if(response) {
-    //   return response.length();
-    // }
-    return 0;
+    let numProjects = 0;
+    for (let i = 0; i < this.allProjects.length; i++) {
+      if (this.allProjects[i].team.id === teamId) {
+        numProjects++;
+      }
+    }
+    return numProjects;
   }
 
   projects(teamId: number) {
@@ -95,9 +99,9 @@ export class TeamsComponent {
 
   addTeam() {
     const dialogRef = this.dialog.open(TeamsAddFormComponent, {
-      data: this.teamToAdd
+      data: this.teamToAdd,
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       //here is were we post the new user team
       //let response =  post("company", [id, "teams"], this.teamToAdd)
       //if(response) {
@@ -105,5 +109,4 @@ export class TeamsComponent {
       //}
     });
   }
-  
 }

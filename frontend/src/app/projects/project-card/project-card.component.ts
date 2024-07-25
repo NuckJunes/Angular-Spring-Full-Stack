@@ -1,14 +1,14 @@
 import { NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import ProjectDTO from '../../models/ProjectDTO';
-import { CreateProjectComponent } from "../create-project/create-project.component";
+import { CreateProjectComponent } from '../create-project/create-project.component';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
   imports: [NgIf, CreateProjectComponent],
   templateUrl: './project-card.component.html',
-  styleUrl: './project-card.component.css'
+  styleUrl: './project-card.component.css',
 })
 export class ProjectCardComponent {
   showOverlay = false;
@@ -24,7 +24,7 @@ export class ProjectCardComponent {
       id: 0,
       name: '',
       description: '',
-      users: [], // initialize users array with no elements
+      teammates: [], // initialize users array with no elements
     },
     date: '',
   };

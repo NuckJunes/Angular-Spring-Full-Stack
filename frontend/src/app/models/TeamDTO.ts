@@ -1,7 +1,7 @@
-import BasicUserDTO from "./BasicUserDTO";
+import BasicUserDTO from './BasicUserDTO';
 export default interface TeamDTO {
-    id: number,
-    name: string,
-    description: string,
-    users: BasicUserDTO[]
-};
+  id: number;
+  name: string;
+  description: string;
+  teammates: BasicUserDTO[];
+}
