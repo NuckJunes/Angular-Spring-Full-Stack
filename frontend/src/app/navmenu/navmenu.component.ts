@@ -41,6 +41,6 @@ export class NavmenuComponent {
   }
 
   goHome() {
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/announcements');
   }
 }
