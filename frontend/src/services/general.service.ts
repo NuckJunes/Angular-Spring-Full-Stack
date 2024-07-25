@@ -18,7 +18,7 @@ export class GeneralService {
   }
   logout(): void {
     localStorage.removeItem('user');
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   isLoggedIn(): boolean {

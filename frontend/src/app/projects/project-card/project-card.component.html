@@ -8,6 +8,8 @@
       <div class="card-header">
         <div id="title">
           <p id="name">{{ project.name }}</p>
+          <div class="active" *ngIf="project.active"> Active</div>
+          <div class="not-active" *ngIf="!project.active"> Inactive</div>
           <div class="last-edited" *ngIf="daysAgo > 0">
             Last edited {{ daysAgo }} days ago
           </div>

@@ -36,7 +36,7 @@ export class SelectCompanyComponent {
     if (selectedCompany) { 
       this.userInfo.updateCompanyIDSource(selectedCompany.id);
       this.userInfo.updateCompanyNameSource(selectedCompany.name);
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('announcements');
     }
   }
 

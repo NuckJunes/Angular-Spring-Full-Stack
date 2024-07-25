@@ -13,7 +13,7 @@
     </div>
     <div class="companyName" *ngIf="companyName">{{companyName}}</div>
     <div class="links">
-      <a class="link" routerLink="/">Home</a>
+      <a class="link" routerLink="/announcements">Home</a>
       <a *ngIf="user && user.admin" class="link" routerLink="/select-company">Company</a>
       <a class="link" routerLink="/teams">Teams</a>
       <a *ngIf="user && user.admin" class="link" routerLink="/users">Users</a>
