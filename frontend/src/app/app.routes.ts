@@ -10,9 +10,9 @@ import { AdminGuard } from '../services/admin.guard';
 
 export const routes: Routes = [
     {path: '', component: LoginComponent},
-    {path: 'announcements', component: AnnouncementsComponent},
-    {path: 'projects', component: ProjectsComponent},
-    {path: 'select-company', component: SelectCompanyComponent},
-    {path: 'teams', component: TeamsComponent},
-    {path: 'users', component: UserRegComponent}
+    {path: 'announcements', component: AnnouncementsComponent,canActivate:[GeneralGuard]},
+    {path: 'projects', component: ProjectsComponent,canActivate:[GeneralGuard]},
+    {path: 'select-company', component: SelectCompanyComponent,canActivate:[GeneralGuard,AdminGuard]},
+    {path: 'teams', component: TeamsComponent,canActivate:[GeneralGuard]},
+    {path: 'users', component: UserRegComponent,canActivate:[GeneralGuard,AdminGuard]}
 ];
