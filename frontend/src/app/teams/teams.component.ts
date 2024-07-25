@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { userInfo } from '../../services/userInfo';
 import { get } from '../../services/api';
 import TeamDTO from '../models/TeamDTO';
+import ProjectDTO from '../models/ProjectDTO';
 import { Router } from '@angular/router';
 import {
   MatDialog,
@@ -30,47 +31,7 @@ export class TeamsComponent {
   id: string = '';
   teams: TeamDTO[] = [];
   dataLoaded = false;
-  // teams: TeamDTO[] = [
-  //   {
-  //     id: 0,
-  //     name: 'Team xyz',
-  //     description: 'New team',
-  //     users: [],
-  //   },
-  // ];
-  // teams: TeamDTO[] = [
-  //   {
-  //     id: 0,
-  //     name: "Team 1",
-  //     description: "A new team 1.",
-  //     users: [
-  //     {
-  //       id: 0,
-  //       profile: {
-  //         firstName: "Dwayne",
-  //         lastName: "Johnson",
-  //         phoneNumber: "000-000-0000",
-  //         email: "mail@mail.com"
-  //       },
-  //       admin: true,
-  //       active: true,
-  //       status: "The Rock",
-  //     }
-  //     ]
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "Team 2",
-  //     description: "A new team 2.",
-  //     users: []
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Team 3",
-  //     description: "A new team 3.",
-  //     users: []
-  //   }
-  // ];
+  allProjects: ProjectDTO[] = [];
 
   teamToAdd: TeamDTO = {
     id: 0,
@@ -89,68 +50,45 @@ export class TeamsComponent {
     this.userInfo
       .getCompanyID()
       .subscribe((value) => (this.id = value.toString()));
+
+    /* DELETE this.id = '1' AFTER WE'VE FULLY IMPLEMENTED THE SELECT COMPANY PAGE */
+    this.id = '1'; //just used for testing the teams page with backend data
+    /* --------------------------------------------------------------------------*/
     this.getTeams();
+    this.getCompanyProjects();
   }
 
   async getTeams() {
     try {
-      let response = await get('company', ['1', 'teams']);
+      let response = await get('company', [this.id, 'teams']);
       if (response) {
         this.teams = response;
-        console.log('Response: ');
-        console.log(response);
-        // for (let i = 0; i < response.length; i++) {
-        //   this.teams[i].users = response[i].teammates;
-        // }
         this.dataLoaded = true;
-        console.log(this.teams);
       }
     } catch (error) {
       console.error('Error fetching teams:', error);
     }
   }
 
-  // async getTeams() {
-  //   //let response = await get('company', [this.id, 'teams']);
-  //   let response = await get('company', ['1', 'teams']);
-  //   if (response) {
-  //     //this.teams.push(response[0]);
-  //     //console.log(this.teams);
-  //     let team1 = response[0];
-  //     console.log('Team 1: ');
-  //     console.log(team1);
-  //     let team1DTO = {
-  //       id: 69,
-  //       name: 'team1.name',
-  //       description: 'team1.description',
-  //       users: [],
-  //     };
-  //     console.log('Team 1 DTO: ');
-  //     console.log(team1DTO);
-  //     this.teams.push(team1DTO);
-  //     let team2 = {
-  //       id: 0,
-  //       name: 'Team 3',
-  //       description: 'New team',
-  //       users: [],
-  //     };
-  //     this.teams.push(team2);
-
-  //     //this.teams = response;
-  //     // this.teams.forEach((element) => {
-  //     //   this.loadProjects(element.id);
-  //     // });
-  //   }
-  //   // console.log('Teams: ' + this.teams);
-  //   // console.log(this.teams[0]);
-  // }
+  async getCompanyProjects() {
+    try {
+      let response = await get('company', [this.id, 'projects']);
+      if (response) {
+        this.allProjects = response;
+      }
+    } catch (error) {
+      console.error('Error fetching team projects:', error);
+    }
+  }
 
   loadProjects(teamId: number) {
-    // let response = await get("company", [this.id, "teams", teamId.toString(), "projects"]);
-    // if(response) {
-    //   return response.length();
-    // }
-    return 0;
+    let numProjects = 0;
+    for (let i = 0; i < this.allProjects.length; i++) {
+      if (this.allProjects[i].team.id === teamId) {
+        numProjects++;
+      }
+    }
+    return numProjects;
   }
 
   projects(teamId: number) {

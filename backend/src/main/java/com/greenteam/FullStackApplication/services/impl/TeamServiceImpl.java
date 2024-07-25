@@ -1,6 +1,7 @@
 package com.greenteam.FullStackApplication.services.impl;
 
 import com.greenteam.FullStackApplication.dtos.BasicUserDto;
+import com.greenteam.FullStackApplication.dtos.ProjectDto;
 import com.greenteam.FullStackApplication.entities.Team;
 import com.greenteam.FullStackApplication.entities.User;
 import com.greenteam.FullStackApplication.mappers.BasicUserMapper;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -30,4 +32,5 @@ public class TeamServiceImpl implements TeamService {
         activeTeamMembers.removeIf(user -> !user.isActive());
         return activeTeamMembers;
     }
+
 }

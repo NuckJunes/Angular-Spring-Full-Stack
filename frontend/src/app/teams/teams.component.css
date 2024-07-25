@@ -3,11 +3,19 @@ h1 {
   color: #1ba098;
 }
 
+h1 {
+  text-align: center;
+  color: #1ba098;
+}
+
 .teams-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .team-container {
@@ -16,12 +24,32 @@ h1 {
   background-color: #0b2d45;
   border-radius: 25px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .team-header {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 2px solid #deb992; /* Border moved here */
+  border-bottom: 2px solid #deb992;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.team-name {
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0;
+}
+
+.team-projects-num {
+  font-size: 14px;
+  text-align: right;
+}
+
+.member-header {
+  text-align: center;
 }
 
 .team-members-container {
@@ -35,24 +63,19 @@ h1 {
   background-color: #1ba098;
   border-radius: 10px;
   padding: 5px 10px;
-  width: calc(50% - 5px); /* 50% width minus half of the gap */
+  width: calc(50% - 5px);
   box-sizing: border-box;
   margin: 0;
 }
 
-.team-name {
-  display: inline;
-  margin-right: 125px;
-  font-family: "Mulish", sans-serif; /* Added this line */
-  font-weight: 500; /* Optional: if you want it bold */
-  font-size: 24px;
+@media (max-width: 992px) {
+  .team-container {
+    width: calc(50% - 20px);
+  }
 }
 
-.team-projects-num {
-  display: inline;
-  width: 50%;
-}
-
-.member-header {
-  text-align: center;
+@media (max-width: 768px) {
+  .team-container {
+    width: 100%;
+  }
 }
