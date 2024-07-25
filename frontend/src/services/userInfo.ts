@@ -18,6 +18,9 @@ export class userInfo {
     private teamIDSource = new BehaviorSubject<number>(this.loadTeamIDFromLocalStorage());
     teamID = this.teamIDSource.asObservable();
 
+    private teamNameSource = new BehaviorSubject<string>(this.loadTeamNameFromLocalStorage());
+    teamName = this.teamNameSource.asObservable();
+
     updateFullUserSource(newFullUser: FullUserDTO) {
         this.fullUserSource.next(newFullUser);
         localStorage.setItem('user', JSON.stringify(newFullUser));
@@ -38,6 +41,11 @@ export class userInfo {
         localStorage.setItem('teamId', newTeamID.toString());
     }
 
+    updateTeamNameSource(newTeamName: string) {
+        this.teamNameSource.next(newTeamName);
+        localStorage.setItem('teamName', newTeamName);
+    }
+
     getFullUser() {
         return this.fullUserSource;
     }
@@ -52,6 +60,10 @@ export class userInfo {
 
     getTeamID() {
         return this.teamIDSource;
+    }
+
+    getTeamName() {
+        return this.teamNameSource;
     }
 
     private loadFullUserFromLocalStorage(): FullUserDTO | undefined {
@@ -92,5 +104,15 @@ export class userInfo {
 
         }
         return -1;
+      }
+
+      private loadTeamNameFromLocalStorage(): string {
+        try {
+            const teamName = localStorage.getItem('teamName');
+            return teamName ? teamName : '';
+        } catch(error) {
+
+        }
+        return '';
       }
 }

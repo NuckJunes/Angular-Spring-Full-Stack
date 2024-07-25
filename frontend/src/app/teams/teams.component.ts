@@ -47,13 +47,7 @@ export class TeamsComponent {
   ) {}
 
   ngOnInit() {
-    this.userInfo
-      .getCompanyID()
-      .subscribe((value) => (this.id = value.toString()));
-
-    /* DELETE this.id = '1' AFTER WE'VE FULLY IMPLEMENTED THE SELECT COMPANY PAGE */
-    this.id = '1'; //just used for testing the teams page with backend data
-    /* --------------------------------------------------------------------------*/
+    this.userInfo.getCompanyID().subscribe((value) => (this.id = value.toString()));
     this.getTeams();
     this.getCompanyProjects();
   }
@@ -91,8 +85,9 @@ export class TeamsComponent {
     return numProjects;
   }
 
-  projects(teamId: number) {
+  projects(teamId: number, teamName: string) {
     //navigate to projects page and update current teamid to be this input
+    this.userInfo.updateTeamNameSource(teamName);
     this.userInfo.updateTeamIDSource(teamId);
     this.router.navigate(['/projects']);
   }

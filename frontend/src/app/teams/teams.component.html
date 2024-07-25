@@ -5,7 +5,7 @@
     <div
       class="team-container"
       *ngFor="let team of teams"
-      (click)="projects(team.id)"
+      (click)="projects(team.id, team.name)"
     >
       <div class="team-header">
         <h3 class="team-name">{{ team.name }}</h3>

@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
+import { userInfo } from '../../../services/userInfo';
 
 @Component({
   selector: 'app-create-project',
@@ -20,12 +21,15 @@ export class CreateProjectComponent {
  result = '';
  companyId = 0;
  active = true;
- @Input() teamId = 0;
+ //@Input() teamId = 0;
+ teamId: number = 0;
  @Input() project: any;
  @Input() team: any;
  @Output() updateOverlay = new EventEmitter<any>();
 
- constructor(private http: HttpClient) {}
+ constructor(private http: HttpClient, private userInfo: userInfo) {
+  userInfo.getTeamID().subscribe(teamId => this.teamId = teamId);
+ }
 
  ngOnInit(): void {
    const companyId = JSON.parse(localStorage.getItem('companyId')!);
@@ -49,7 +53,7 @@ export class CreateProjectComponent {
          name: this.projectName,
          description: this.description,
          active: this.active,
-         team: this.project.team,
+         team: {id: this.teamId},
        }
      )
      .subscribe({
@@ -72,7 +76,7 @@ export class CreateProjectComponent {
          name: this.projectName,
          description: this.description,
          active: this.active,
-         team: this.team,
+         team: {id: this.teamId},
        }
      )
      .subscribe({
