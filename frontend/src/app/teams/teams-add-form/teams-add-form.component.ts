@@ -17,6 +17,8 @@ import TeamDTO from '../../models/TeamDTO';
 import { get, post } from '../../../services/api';
 import FullUserDTO from '../../models/FullUserDTO';
 import { userInfo } from '../../../services/userInfo';
+import { unescape } from 'querystring';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-teams-add-form',
@@ -63,6 +65,23 @@ export class TeamsAddFormComponent {
     teams: [],
   };
 
+  emptyUser: FullUserDTO = {
+    id: 0,
+    profile: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phoneNumber: '',
+    },
+    admin: false,
+    active: false,
+    status: '',
+    companies: [],
+    teams: [],
+  };
+
+  id: number = 0;
+
   constructor(
     private userInfo: userInfo,
     public dialogRef: MatDialogRef<TeamsAddFormComponent>,
@@ -71,19 +90,20 @@ export class TeamsAddFormComponent {
 
   ngOnInit() {
     //Fill the users array with all users in a company
-    //this.generateUsers();
+    this.generateUsers();
   }
 
   async generateUsers() {
-    let id = this.userInfo.getCompanyID();
+    let id = 0;
+    this.userInfo.getCompanyID().subscribe((value) => id = value);
     let response = await get('company', [id.toString(), 'users']);
     if (response) {
       this.allUsers = response;
-      this.users = response;
+      this.users = this.allUsers.slice();
     }
   }
 
-  addUser() {
+  addUser(value: any) {
     //We must convert from FullUserDTO to BasicUserDTO
     //Removes currentUser from users and adds to teamToAdd.users
     let pos = this.users.indexOf(this.currentUser);
@@ -95,6 +115,7 @@ export class TeamsAddFormComponent {
       active: this.currentUser.active,
       status: this.currentUser.status,
     });
+    this.currentUser = JSON.parse(JSON.stringify(this.emptyUser));
   }
 
   removeUser(id: number) {
@@ -103,8 +124,16 @@ export class TeamsAddFormComponent {
     this.teamToAdd.teammates = this.teamToAdd.teammates.filter(
       (user) => user.id !== id
     );
-    let tmp = this.allUsers.filter((user) => user.id === id);
-    this.users.push(tmp[0]);
+    let tmp = undefined;
+    this.allUsers.forEach(element => {
+      if(element.id === id) {
+        tmp = element;
+      }
+    });
+    if(tmp !== undefined) {
+      this.users.push(tmp);
+    }
+    this.currentUser = JSON.parse(JSON.stringify(this.emptyUser));
   }
 
   onCancelClick() {

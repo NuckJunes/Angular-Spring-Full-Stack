@@ -106,13 +106,7 @@ export class TeamsComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       //here is were we post the new user team
-      //let response =  post("company", [id, "teams"], this.teamToAdd)
-      //if(response) {
-      //  teams = response;
-      //}
-      if (result) {
-        this.postTeam(result);
-      }
+      this.postTeam(result);
     });
   }
 
