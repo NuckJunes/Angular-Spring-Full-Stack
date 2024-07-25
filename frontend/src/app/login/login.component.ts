@@ -64,11 +64,11 @@ export class LoginComponent {
         this.userInfo.updateFullUserSource(this.userData);
         if (this.userData.status === 'PENDING') this.isPending = true;
         else {
-         // if (this.userData.admin) {
-          //  this.router.navigate(['/select-company']);
-         // }
-           {
+          if (this.userData.admin) {
             this.router.navigate(['/select-company']);
+         }else
+           {
+            this.router.navigate(['/']);
           }
         }
       },
